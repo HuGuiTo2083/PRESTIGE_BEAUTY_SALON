@@ -152,7 +152,7 @@ function carousel1() {
 }
 
 //carrusel desvanecido y automatico
-function Carousel2() {
+function carousel2() {
   const track = document.querySelector('.carousel-track2');
   if (!track) return;
   const slides = track.querySelectorAll('.slide2');
