@@ -502,6 +502,13 @@ h1{
 /* ------------------ */
 
 @media screen and (max-width: 1028px) {
+    .carousel1 {
+        /* 100% del viewport, sin importar padding del padre */
+        width: 100vw !important;
+        /* Centrar el contenedor compensando el margen automático */
+        margin-left: calc(-50vw + 50%) !important;
+      }
+
     .resp_gtc_ra300px{
         grid-template-columns: 1fr !important;
     }
