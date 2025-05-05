@@ -152,21 +152,57 @@ function carousel1() {
 }
 
 //carrusel desvanecido y automatico
-function carousel2() {
-  // Seleccionamos directamente los slides
-  const slides = document.querySelectorAll('.carousel-track2 .slide2');
-  // Si no hay .slide2, salimos
+function Carousel2() {
+  const track = document.querySelector('.carousel-track2');
+  if (!track) return;
+  const slides = track.querySelectorAll('.slide2');
   if (slides.length === 0) return;
 
   let current = 0;
+  let timerId = null;
   const interval = 3000;
 
-  setInterval(() => {
-    slides[current].classList.remove('active2');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active2');
-  }, interval);
+  // Arranca el carrusel desde el inicio
+  const start = () => {
+    // Reset a la slide 0
+    slides.forEach((s, i) => s.classList.toggle('active2', i === 0));
+    current = 0;
+    // Inicia el intervalo
+    timerId = setInterval(() => {
+      slides[current].classList.remove('active2');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active2');
+    }, interval);
+  };
+
+  // Para el carrusel y resetea
+  const stop = () => {
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    }
+    // Reset a la slide 0
+    slides.forEach((s, i) => s.classList.toggle('active2', i === 0));
+    current = 0;
+  };
+
+  // Observador que detecta visibilidad en viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        start();
+      } else {
+        stop();
+      }
+    });
+  }, {
+    threshold: 0.5  // dispara cuando al menos 50% del carrusel está visible
+  });
+
+  observer.observe(track);
 }
+
+// Inicializa al cargar DOM
 
 document.addEventListener("DOMContentLoaded", () => {
   dynamicHeight();
