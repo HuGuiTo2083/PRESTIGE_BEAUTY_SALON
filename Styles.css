@@ -327,18 +327,21 @@ h1{
     position: relative;
     width: 80vw;
     max-width: 600px;
+    height: auto;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   }
   .carousel-track1 {
+    width: 100%;
+    height: 300px;
     display: flex;
     transition: transform 0.5s ease-in-out;
   }
   .slide1 {
     min-width: 100%;
-    height: 300px;
-    flex-shrink: 0;
+    height: 100%;
+    
   }
   /* Simulación de “imágenes” con colores */
 
@@ -502,12 +505,7 @@ h1{
 /* ------------------ */
 
 @media screen and (max-width: 1028px) {
-    .carousel1 {
-        /* 100% del viewport, sin importar padding del padre */
-        width: 100vw !important;
-        /* Centrar el contenedor compensando el margen automático */
-        margin-left: calc(-50vw + 50%) !important;
-      }
+   
 
     .resp_gtc_ra300px{
         grid-template-columns: 1fr !important;
