@@ -264,6 +264,10 @@
 
 }
 
+.gtr_0-5_auto_8{
+    grid-template-rows: 0.5fr auto 8fr;
+}
+
 .gtr_ra100px{
     grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
 
@@ -287,6 +291,10 @@
     grid-template-rows: 1fr 5fr;
 }
 
+.gtr_1_8{
+    grid-template-rows: 1fr 8fr;
+}
+
 .gtr_1_1_1{
     grid-template-rows: 1fr 1fr 1fr;
 }
@@ -306,6 +314,9 @@
 
 .gtr_0-5_4_1{
     grid-template-rows: 0.5fr 4fr 1fr;
+}
+.gtr_0-5_1_8{
+    grid-template-rows: 0.5fr 1fr 8fr;
 }
 
 
@@ -398,6 +409,11 @@
     background-color: rgb(211, 219, 225);
 }
 
+.bcLightWhite2{
+    background-color: #f2f2f2;
+
+}
+
 .bcBlack{
 background-color: black;
 }
@@ -435,6 +451,19 @@ background-color: black;
 
 /* ------------------- */
 
+/* BACKGROUND-REPEAT-CSS */
+.brNoRepeat{
+    background-repeat: no-repeat;
+    
+}
+/* ------------------------------- */
+/* BACKGROUND-SIZE-CSS */
+.bsContain{
+    background-size: contain;
+    
+}
+
+/* ---------------------- */
 /* DISPLAY-CSS */
 
 
@@ -464,6 +493,10 @@ background-color: black;
 
 .jcStart{
     justify-content: start;
+}
+
+.jcFlexStart{
+    justify-content: flex-start;
 }
 
 /* ------------------- */

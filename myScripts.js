@@ -160,7 +160,7 @@ function carousel2() {
 
   let current = 0;
   let timerId = null;
-  const interval = 3000;
+  const interval = 5000;
 
   // Arranca el carrusel desde el inicio
   const start = () => {
