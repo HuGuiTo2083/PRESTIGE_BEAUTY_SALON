@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,32 +9,72 @@
 
     <link href="../myClasses.css" rel="stylesheet" type="text/css">
 </head>
-<body class="bcLG_180deg_thirdFourth h100vh w100vw bsBorderBox p10  dGrid gtr_0-5_auto_8 pRelative gtc_1">
-<!-- -------A PARTIR DE AQUI INICIA EL DISEÑO DE LA PARTE DE SERVICIOS--- -->
-<div class="w100 h100  dFlex aiCenter jcCenter mb20">
+
+<body class="bcLG_180deg_thirdFourth_anim h100vh w100vw bsBorderBox p10  dGrid gtr_0-5_auto_auto_1_8 pRelative gtc_1">
+    <!-- -------A PARTIR DE AQUI INICIA EL DISEÑO DE LA PARTE DE SERVICIOS--- -->
+
     <!-- -------TEXTO DE LA AGENDA--- -->
-<label class="fs4 ff2 fw500 cFirst">Pick an Artist</label>
-</div>
-<!-- -----PARTE DONDE SE SELECCIONA LA ARTISTA------- -->
-<div class="w100 h100  dFlex aiCenter jcCenter jcCenter_resp oxAuto gap20 bsBorderBox pl10 pr10">
-    <img src="../images/team_teresa.jpg" class="myImg2 br50per b5_solid_first">
-    <img src="../images/team_lucy-rose.jpg" class="myImg2 br50per b5_solid_first">
-    <img src="../images/team_carly.jpg" class="myImg2 br50per b5_solid_first">
-    <img src="../images/team_holly.jpg" class="myImg2 br50per b5_solid_first">
-    <img src="../images/team_marni.jpg" class="myImg2 br50per b5_solid_first">
-    <img src="../images/team_amy.jpg" class="myImg2 br50per b5_solid_first">
-    
-</div>
-<!-- --------------------------CLANEDARIO PARA AGENDAR---------- -->
- <div class="w100 dFlex h100 jcCenter aiCenter  oyAuto bsBorderBox p10">
-    <div class="calendar1 bcWhite fs2" id="calendar1"></div>
+    <div class="w100 h100  dFlex aiCenter jcCenter mb20">
 
- </div>
+        <label class="fs4 ff2 fw500 cFirst">Pick an Artist</label>
+    </div>
+    <!-- -----PARTE DONDE SE SELECCIONA LA ARTISTA------- -->
+    <div class="w100 h100  dFlex aiCenter jcCenter jcCenter_resp oxAuto oyVisible  gap20 bsBorderBox pl10 pr10">
+        <img src="../images/team_teresa.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+        <img src="../images/team_lucy-rose.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+        <img src="../images/team_carly.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+        <img src="../images/team_holly.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+        <img src="../images/team_marni.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+        <img src="../images/team_amy.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+
+    </div>
+    <!-- ---------------------------------------------INDICACIONES DE COLORES------------------ -->
+    <div class="w100 hAuto  dFlex jcCenter pRelative  mb10 ">
+        <div class="w100_resp1 hAuto dGrid gtr_1 gtc_ra100px  bsBorderBox bcThird br1 p15 mt10 ">
+            <!-- --------------- -->
+            <div class="w100 h100 dFlex gap10 aiCenter jcCenter resp_aiStart ">
+                <div class="h20px w20px b2_solid_black bcWhite "></div>
+                <label class="fw300 cBlack ff2 fs4">No Available</label>
+            </div>
+            <!-- ---------- -->
+            <div class="w100 h100 dFlex gap10 aiCenter jcCenter resp_aiStart">
+                <div class="h20px w20px  bussy "></div>
+                <label class="fw300 cBlack ff2 fs4">Bussy</label>
+            </div>
+            <!-- ------------------ -->
+            <div class="w100 h100 dFlex gap10 aiCenter jcCenter resp_aiStart">
+                <div class="h20px w20px  scheduled "></div>
+                <label class="fw300 cBlack ff2 fs4">Scheduled For You</label>
+            </div>
+            <!-- ------------------------- -->
+            <div class="w100 h100 dFlex gap10 aiCenter jcCenter resp_aiStart">
+                <div class="h20px w20px  bcLightWhite2 "></div>
+                <label class="fw300 cBlack ff2 fs4">Available</label>
+            </div>
+            <!-- ------------------------- -->
+
+        </div>
 
 
-<!-- --------------------------------------------- -->
+    </div>
+    <!-- -----------------------------------BOTONES PARA MOVERSE EN EL CALENDARIO------------- -->
+    <div class="w100 h100  dFlex aiCenter bsBorderBox jcSpaceBetween pl50 pr50">
+        <button class="size1 br1 bNone bcFirst cWhite fw900  trans0-4 hoverFirst fs2 cPointer ff1" id="calendar1Prev">
+            <</button>
+                <button class="size1 br1 bNone bcFirst cWhite fw900  trans0-4 hoverFirst fs2 cPointer ff1"
+                    id="calendar1Next">></button>
+    </div>
+
+    <!-- --------------------------CLANEDARIO PARA AGENDAR---------- -->
+    <div class="w100 dFlex h100 jcCenter aiCenter  oyAuto bsBorderBox p10">
+        <div class="calendar1 bcWhite fs2" id="calendar1"></div>
+    </div>
+
+
+    <!-- --------------------------------------------- -->
     <script src="../myScripts.js"></script>
     <script src="myScriptsServices.js"></script>
 
 </body>
+
 </html>

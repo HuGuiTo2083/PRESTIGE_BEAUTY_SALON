@@ -20,7 +20,6 @@ const díasEnElMes = últimoDíaDelMes.getDate();
 
 console.log('Este mes tiene ' + díasEnElMes + ' días.');
 
-
 console.log('full date: ' + myDate)
 console.log('dia de la semana: ' + myDate.getDay())
 console.log('dia del mes: ' + myDate.getDate())
@@ -36,6 +35,9 @@ myDaysOfWeek.push(inicial_day+i)
 }
 
 const myCalendar = document.getElementById('calendar1')
+const btnPrev    = document.getElementById('calendar1Prev');
+const btnNext    = document.getElementById('calendar1Next');
+
 const myHours = [
     '9:00', '10:00', '11:00', '12:00',
     '13:00', '14:00', '15:00', '16:00',
@@ -43,83 +45,109 @@ const myHours = [
     '21:00', '22:00', '23:00'
   ];
 
-
-
-const today       = new Date();
-const year        = today.getFullYear();
-const month       = today.getMonth();             // 0–11
-const dayOfMonth  = today.getDate();              // 1–31
-const dayOfWeek   = today.getDay();               // 0(dom)–6(sáb)
-
-// 1) Días de meses:
-const daysInMonth     = new Date(year, month + 1, 0).getDate();
-const daysInPrevMonth = new Date(year, month,     0).getDate();
-
-// 2) Día de la semana “bruto” (puede ser <1 o >daysInMonth)
-const weekStartRaw = dayOfMonth - dayOfWeek;
-const dayNames = [
+  const dayNames = [
     "Sun", "Mon", "Tues",
     "Wed", "Thur", "Fri", "Sat"
   ];
-// 3) Construimos el array de 7 días ajustados:
-const week = Array.from({ length: 7 }, (_, i) => {
-  const raw = weekStartRaw + i;
-  let d, m, y = year;
 
-  if (raw < 1) {
-    // viene del mes anterior
-    d = daysInPrevMonth + raw;
-    m = month - 1;
-  } else if (raw > daysInMonth) {
-    // viene del mes siguiente
-    d = raw - daysInMonth;
-    m = month + 1;
-  } else {
-    // sigue dentro del mes actual
-    d = raw;
-    m = month;
-  }
+// --------------------INICIO DE LA LÓGICA DE CALENDARIO--------------
 
-  // Ajuste por año cuando m<0 ó m>11
-  if (m < 0)  { m = 11; y = year - 1; }
-  if (m > 11) { m = 0;  y = year + 1; }
+// 2. Estado: fecha del primer día de la semana (domingo)
+let weekStart = getWeekStart(new Date());  // hoy → domingo pasado o de hoy si es domingo
 
-  return { day: d, month: m, year: y };
-});
+// 3. Función que calcula y pinta la semana
+function renderWeek(startDate) {
+  myCalendar.innerHTML = '';       // limpiamos
+  const year  = startDate.getFullYear();
+  const month = startDate.getMonth();
+  const daysInMonth     = new Date(year, month+1, 0).getDate();
+  const daysInPrevMonth = new Date(year, month,   0).getDate();
 
-for (let i = 0; i < myHours.length; i++) {
-  week.forEach(({ day, month, year }, index) => {
-    const myDiv = document.createElement('div');
-    myDiv.className = 'cell1';
+  for (let hourIdx = 0; hourIdx < myHours.length; hourIdx++) {
+    // recorremos cada día de la semana
+    for (let d = 0; d < 7; d++) {
+      // raw = índice relativo al día del mes
+      const raw = startDate.getDate() + d;
+      let day, m = month, y = year;
 
+      if (raw < 1) {
+        day = daysInPrevMonth + raw;
+        m   = month - 1;
+      } else if (raw > daysInMonth) {
+        day = raw - daysInMonth;
+        m   = month + 1;
+      } else {
+        day = raw;
+      }
 
-    if (i === 0) {
-        myDiv.classList.add('bcFirst')
-        myDiv.classList.add('cWhite')
+      if (m < 0)  { m = 11; y = year - 1; }
+      if (m > 11) { m = 0;  y = year + 1; }
 
+      const cell = document.createElement('div');
+      cell.className = 'cell1';
 
-      // Fila de cabeceras: mostramos día/mes
-      // +1 en month porque getMonth() es 0–11
-      myDiv.innerHTML = `${day}/${month + 1} <br> ${dayNames[index]}`;
-    } else {
-        myDiv.classList.add('bcLightWhite2')
-        myDiv.classList.add('fs12')
-      // Resto de celdas: hora y atributos data
-      myDiv.textContent = myHours[i];
-      // Como dataset.date suele usarse en formato ISO o al menos yyyy-mm-dd
-      myDiv.dataset.date = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-      myDiv.dataset.hour = myHours[i];
+      if (hourIdx === 0) {
+        cell.classList.add('bcFirst','cWhite');
+        cell.innerHTML = `${day}/${m+1}<br>${dayNames[d]}`;
+      } else {
+        cell.classList.add('bcLightWhite2','fs12');
+        cell.textContent = myHours[hourIdx];
+        cell.dataset.date = `${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        cell.dataset.hour = myHours[hourIdx];
+      }
+
+      myCalendar.appendChild(cell);
     }
-
-    myCalendar.appendChild(myDiv);
-  });
+  }
 }
 
 
+// 4. Helper: dado un Date retorna el domingo de esa semana
+function getWeekStart(date) {
+  const dow = date.getDay();  // 0=dom,1=lun...
+  const sunday = new Date(date);
+  sunday.setDate(date.getDate() - dow);
+  return sunday;
+}
 
-console.log(week);
+// --------------------------------FIN DE LA LOGICA PARABEL CALENDARIO-------------
 
 
+// 5. Botones “<” y “>”
+btnPrev.addEventListener('click', () => {
+  weekStart.setDate(weekStart.getDate() - 7);
+  renderWeek(weekStart);
+});
+btnNext.addEventListener('click', () => {
+  weekStart.setDate(weekStart.getDate() + 7);
+  renderWeek(weekStart);
+});
+
+// 6. Inicial
+renderWeek(weekStart);
+
+
+
+
+//------Logica para poder hacer que se seleccione solo una profesional y se cambie solo su birde de color y el resto se les quite el borde blanco, que solo permite una a la vez tener el borde blanco
+
+const myImgGlow = document.querySelectorAll('.changeGlowEffect')
+let myProfesionalPicked_index = 0
+myImgGlow[0].classList.add('b5_solid_white')
+myImgGlow.forEach((el,index)=>{
+  el.addEventListener('click', ()=>{
+    myProfesionalPicked_index = index
+    console.log('el index de la profesional es: ' +  myProfesionalPicked_index)
+   
+    el.classList.add('b5_solid_white')
+    myImgGlow.forEach(el2 =>{
+      if(el2 != el){
+       
+        el2.classList.remove('b5_solid_white')
+      }
+    })
+  })
+})
 
 
 // console.log(getDayName())

@@ -68,6 +68,21 @@
 
 }
 
+.gtc_ra70px{
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+
+}
+
+.gtc_ra100px{
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+}
+
+.gtc_ra1fr{
+    grid-template-columns: repeat(auto-fit, 1fr);
+
+}
+
 .gtc_ra1{
     grid-template-columns: repeat(auto-fit,1fr);
 
@@ -267,6 +282,18 @@
 .gtr_0-5_auto_8{
     grid-template-rows: 0.5fr auto 8fr;
 }
+
+.gtr_0-5_auto_1_1_8{
+    grid-template-rows: 0.5fr auto 1fr 1fr 8fr;
+
+
+}
+
+.gtr_0-5_auto_auto_1_8{
+    grid-template-rows: 0.5fr auto auto 1fr 8fr;
+
+}
+
 
 .gtr_ra100px{
     grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
@@ -499,6 +526,10 @@ background-color: black;
     justify-content: flex-start;
 }
 
+.jcSpaceBetween{
+    justify-content: space-between;
+}
+
 /* ------------------- */
 
 /* BOX-SIZING-CSS */
@@ -716,6 +747,10 @@ background-color: black;
 .w150px { width: 150px; }
 .w200px { width: 200px; }
 
+.w1vw   { width: 1vw; }
+.w2vw   { width: 2vw; }
+.w3vw   { width: 3vw; }
+.w4vw   { width: 4vw; }
 .w5vw   { width: 5vw; }
 .w10vw  { width: 10vw; }
 .w15vw  { width: 15vw; }
@@ -780,6 +815,18 @@ background-color: black;
 
 .oyScroll{
     overflow-y: scroll;
+}
+
+.oVisible{
+    overflow: visible;
+}
+
+.oxVisible{
+    overflow-x: visible;
+}
+
+.oyVisible{
+    overflow-y: visible;
 }
 
 
@@ -1636,4 +1683,49 @@ border-radius: 50%;
 .b6_solid_black{
     border: 6px solid black;
 }
+
+
+.b1_solid_white{
+    border: 1px solid white;
+}
+
+.b2_solid_white{
+    border: 2px solid white;
+}
+
+.b3_solid_white{
+    border: 3px solid white;
+}
+
+.b4_solid_white{
+    border: 4px solid white;
+}
+
+.b5_solid_white{
+    border: 5px solid white;
+}
+
+.b6_solid_white{
+    border: 6px solid white;
+}
+
+.bNone{
+    border: none;
+}
+/* ---------------------- */
+
+/* -------- TRANSITION-CSS ------------- */
+
+.trans0-1{
+    transition: 0.1s;
+}
+.trans0-2 { transition: 0.2s; }
+.trans0-3 { transition: 0.3s; }
+.trans0-4 { transition: 0.4s; }
+.trans0-5 { transition: 0.5s; }
+.trans0-6 { transition: 0.6s; }
+.trans0-7 { transition: 0.7s; }
+.trans0-8 { transition: 0.8s; }
+.trans0-9 { transition: 0.9s; }
+.trans1 { transition: 1s; }
 /* ---------------------- */

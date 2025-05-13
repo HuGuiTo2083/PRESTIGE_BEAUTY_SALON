@@ -3,6 +3,7 @@
    --second: #f5eedf;
    --third: #eae0d6;
    --fourth: #c5ac8e;
+   --fifth: #868484;
 }
 
 .myI{
@@ -414,9 +415,30 @@ h1{
 
   }
 
+  .bcLG_90deg_thirdFourth{
+    background: linear-gradient(90deg, var(--third) 0%, var(--fourth) 100%);
+
+  }
+
   .bcLG_180deg_thirdFourth{
     background: linear-gradient(180deg, var(--third) 0%, var(--fourth) 100%);
 
+  }
+
+
+  .bcLG_180deg_thirdFourth_anim {
+    /* degradado original */
+    background: linear-gradient(180deg, var(--third) 0%, var(--fourth) 100%);
+    /* hacemos el fondo más alto que el contenedor para poder desplazarlo */
+    background-size: 100% 200%;
+    /* animación continua */
+    animation: moveGradient 4s linear infinite;
+  }
+  
+  @keyframes moveGradient {
+    0%   { background-position: 0% 0%;   }
+    50%  { background-position: 0% 100%; }
+    100% { background-position: 0% 0%;   }
   }
 
 /* ---------------- */
@@ -537,6 +559,92 @@ h1{
 }
 /* ----------------- */
 
+/* GLOW-CSS EFECTS */
+
+.glow1_fifth {
+    
+  
+    border-radius: 50%;
+    box-shadow: 0 0 50px var(--fifth);
+    animation: pulseGlow1_fifth 1.5s infinite alternate;
+  }
+
+
+@keyframes pulseGlow1_fifth {
+    from {
+      box-shadow: 0 0 20px var(--fifth);
+    }
+    to {
+      box-shadow: 0 0 40px var(--fifth);
+    }
+  }
+
+
+  
+.glow1_white {
+    
+  
+    border-radius: 50%;
+    box-shadow: 0 0 50px white;
+    animation: pulseGlow1_white 1.5s infinite alternate;
+  }
+
+
+@keyframes pulseGlow1_white {
+    from {
+      box-shadow: 0 0 20px white;
+    }
+    to {
+      box-shadow: 0 0 40px white;
+    }
+  }
+
+
+/* ------------------------------- */
+
+/* ---------- SIZE-CSS---------- */
+
+.size1{
+    width: clamp(40px, 10vw, 60px);
+    height: clamp(40px, 10vw, 60px);
+
+}
+
+/* ---------------------------------- */
+
+/* ------------ HOVER-CSS EFFECTS---------------- */
+
+.hoverFirst:hover{
+    filter: brightness(1.15);
+}
+/* -------------------------------- */
+
+.bcCustom{
+    background-color: #ffffff;
+}
+
+.scheduled{
+    background-color: #33f8a6;
+
+}
+
+.bussy{
+background-color:  black;
+}
+
+.noAvailable{
+    background-color: white;
+    border: 2px solid black;
+}
+
+/* -------------------------------- */
+
+.w100_resp1{
+    width: 100%;
+}
+
+
+
 @media screen and (max-width: 1028px) {
     .carousel1 .slide1 img.ofCover {
         display: block !important;
@@ -601,12 +709,25 @@ h1{
        
       }
 
+      .w100_resp1{
+        width: auto !important;
+        gap: 10px;
+       
+        grid-template-columns: auto 1fr !important;
+        grid-template-rows: 1fr 1fr !important;
+       
+      }
+
+      .resp_aiStart{
+        justify-content: start !important;
+      }
+
     
 }
 
 @media screen and (max-width: 500px) {
     .fs11{
-        font-size: clamp(10px, 1.5vw, 15px) !important;
+        font-size: clamp(12px, 1.5vw, 15px) !important;
     }
 
     .jcCenter_resp{
