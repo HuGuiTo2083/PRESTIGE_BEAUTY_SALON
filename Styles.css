@@ -554,7 +554,7 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
 
 }
 /* ----------------- */
@@ -628,13 +628,20 @@ h1{
 
 }
 
-.bussy{
+.BS{
 background-color:  black;
+color:white;
 }
 
-.noAvailable{
+.NAV{
     background-color: white;
     border: 2px solid black;
+}
+
+.AV{
+        background-color: #f2f2f2;
+    
+    
 }
 
 /* -------------------------------- */

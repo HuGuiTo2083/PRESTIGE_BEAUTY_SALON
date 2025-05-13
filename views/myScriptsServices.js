@@ -54,6 +54,8 @@ const myHours = [
 
 // 2. Estado: fecha del primer día de la semana (domingo)
 let weekStart = getWeekStart(new Date());  // hoy → domingo pasado o de hoy si es domingo
+let myProfesionalPicked_index = 1
+let scheduleData = [];
 
 // 3. Función que calcula y pinta la semana
 function renderWeek(startDate) {
@@ -85,12 +87,24 @@ function renderWeek(startDate) {
 
       const cell = document.createElement('div');
       cell.className = 'cell1';
+      cell.classList.add('ff2', 'fw300', 'fs12');
 
       if (hourIdx === 0) {
         cell.classList.add('bcFirst','cWhite');
         cell.innerHTML = `${day}/${m+1}<br>${dayNames[d]}`;
       } else {
-        cell.classList.add('bcLightWhite2','fs12');
+        let dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`
+        let hourStr = myHours[hourIdx]
+         // ————— Aquí comparas con scheduleData —————
+         const match = scheduleData.find(ev =>
+          ev.date  === dateStr &&
+          ev.hour  === hourStr
+        );
+        if (match) {
+          // Añade la clase con el nombre del estado, p.ej. 'AV', 'BS' o 'NAV'
+          cell.classList.add(match.status);
+        }
+        // cell.classList.add('bcLightWhite2','fs12');
         cell.textContent = myHours[hourIdx];
         cell.dataset.date = `${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
         cell.dataset.hour = myHours[hourIdx];
@@ -123,8 +137,7 @@ btnNext.addEventListener('click', () => {
   renderWeek(weekStart);
 });
 
-// 6. Inicial
-renderWeek(weekStart);
+
 
 
 
@@ -132,13 +145,44 @@ renderWeek(weekStart);
 //------Logica para poder hacer que se seleccione solo una profesional y se cambie solo su birde de color y el resto se les quite el borde blanco, que solo permite una a la vez tener el borde blanco
 
 const myImgGlow = document.querySelectorAll('.changeGlowEffect')
-let myProfesionalPicked_index = 0
+
 myImgGlow[0].classList.add('b5_solid_white')
+
+// 6. Inicial
+
+// Devuelve el array de schedules
+async function getSchedule(usr_id) {
+  const res = await fetch('https://prestige-beauty-backend.vercel.app/getSchedule', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: usr_id })
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  console.log('Schedule cargado:', data);
+  return data;    // <— Devuelve el array
+}
+
+
+// 1) Función que carga y luego pinta
+async function loadAndRender() {
+  try {
+    scheduleData = await getSchedule(myProfesionalPicked_index);
+  } catch (err) {
+    console.error('Error cargando schedule:', err);
+    scheduleData = [];
+  }
+  renderWeek(weekStart);
+}
+
+
+loadAndRender()
+
 myImgGlow.forEach((el,index)=>{
   el.addEventListener('click', ()=>{
-    myProfesionalPicked_index = index
+    myProfesionalPicked_index = index+1
     console.log('el index de la profesional es: ' +  myProfesionalPicked_index)
-   
+loadAndRender()
     el.classList.add('b5_solid_white')
     myImgGlow.forEach(el2 =>{
       if(el2 != el){
