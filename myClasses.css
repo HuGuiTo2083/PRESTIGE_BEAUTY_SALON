@@ -300,6 +300,12 @@
 
 }
 
+
+.gtr_ra60px{
+    grid-template-rows: repeat(auto-fit, 60px);
+
+}
+
 .gtr_auto_1{
     grid-template-rows:  auto 1fr;
 }
@@ -750,6 +756,10 @@ background-color: black;
 .w100px { width: 100px; }
 .w150px { width: 150px; }
 .w200px { width: 200px; }
+.w300px { width: 300px; }
+.w400px { width: 400px; }
+.w500px { width: 500px; }
+
 
 .w1vw   { width: 1vw; }
 .w2vw   { width: 2vw; }
@@ -1489,7 +1499,9 @@ border-radius: 50%;
 .left48px { left: 48px; }
 .left49px { left: 49px; }
 .left50px { left: 50px; }
-
+.-left300{
+    left: -300px;
+}
 
 .left0{
     left: 0;
