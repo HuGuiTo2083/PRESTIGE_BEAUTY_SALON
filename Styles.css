@@ -714,6 +714,11 @@ color:white;
         padding-right: 100px;
         
     }
+
+    .modal1{
+        height: clamp(400px, 70vh, 600px);
+
+    }
 }
 
 
