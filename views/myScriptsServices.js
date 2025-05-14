@@ -103,6 +103,10 @@ function renderWeek(startDate) {
         if (match) {
           // Añade la clase con el nombre del estado, p.ej. 'AV', 'BS' o 'NAV'
           cell.classList.add(match.status);
+          if(match.status == "AV"){
+            cell.style.setProperty('cursor', 'pointer')
+            cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+          }
         }
         // cell.classList.add('bcLightWhite2','fs12');
         cell.textContent = myHours[hourIdx];
@@ -115,6 +119,42 @@ function renderWeek(startDate) {
   }
 }
 
+const modalOverlay1 = document.getElementById('modalOverlay1');
+const closeBtn1 = document.getElementById('closeBtn1');
+
+  // Cerrar modal al hacer clic en la X
+  closeBtn1.addEventListener('click', () => {
+    modalOverlay1.style.display = 'none';
+  });
+
+
+  // Cerrar modal al hacer clic fuera del modal (en el overlay)
+  modalOverlay1.addEventListener('click', (event) => {
+    // Solo cerrar si el clic es en el overlay, no dentro del modal
+    if (event.target === modalOverlay1) {
+      modalOverlay1.style.display = 'none';
+    }
+  });
+
+function openModal(date, hour, usr_id){
+  modalOverlay1.style.display = 'flex';
+  const myModalContent1 = document.getElementById('modalContent1')
+  myModalContent1.innerHTML= `
+               <div class="w100 h100  dFlex jcCenter aiCenter">
+                        <img src="../images/${myMembersImgs[myProfesionalPicked_index-1]}" class="br50per myImg2 b5_solid_white">
+                </div>
+
+                <div class="w100 h100  dFlex jcCenter fdColumn aiCenter gap5 bsBorderBox pl10 pr10">
+                        <label class="fw200 ff1 fs6 cThird">${myMembersNames[myProfesionalPicked_index-1]}</label>
+                        <div class="line3"></div>
+                        <label class="fw200 ff2 fs3 cWhite">${myMembersJob[myProfesionalPicked_index-1]}</label>
+                </div>
+  `
+}
+
+const myMembersJob = ['Salon owner & Beautician', 'Beautician & Social Media', 'Beautician', 'Beautician & Social Media', 'Nail Technician', 'Acrylic & BIAB Nails']
+const myMembersNames = ['Teresa', 'Lucy-Rose', 'Carly', 'Hollie', 'Marni', 'Amy']
+const myMembersImgs = ['team_teresa.jpg', 'team_lucy-rose.jpg', 'team_carly.jpg', 'team_holly.jpg', 'team_marni.jpg', 'team_amy.jpg']
 
 // 4. Helper: dado un Date retorna el domingo de esa semana
 function getWeekStart(date) {

@@ -456,6 +456,12 @@ h1{
     background: black;
   }
 
+  .line3 {
+    width: 70%;
+    height: 1px;
+    background: white;
+  }
+
 
 
 
@@ -646,10 +652,69 @@ color:white;
 
 /* -------------------------------- */
 
+/* ------------ MODAL-CSS -------------- */
+
+ /* Fondo oscuro detrás del modal */
+ .modal-overlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none; /* oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  /* Modal en sí */
+  .modal1 {
+    
+    padding: 0 20px 20px 20px;
+    border-radius: 8px;
+    width: clamp(200px, 60vw, 900px);
+    height: clamp(400px, 50vh, 500px);
+    position: relative;
+    display: grid;
+    grid-template-columns:  1fr;
+    grid-template-rows: 1fr 10fr;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+  }
+
+  /* Botón cerrar (equis) */
+  .close-btn1 {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .close-btn1:hover {
+    color: rgb(255, 255, 255);
+  }
+
+
+/* ------------------------------------------ */
+
 .w100_resp1{
     width: 100%;
 }
 
+@media screen and (min-width: 1020px) {
+
+    .resp_left_right_padding{
+        box-sizing: border-box;
+        padding-left: 150px;
+        padding-right: 100px;
+        
+    }
+}
 
 
 @media screen and (max-width: 1028px) {
