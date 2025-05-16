@@ -1733,3 +1733,16 @@ border-radius: 50%;
 .trans0-9 { transition: 0.9s; }
 .trans1 { transition: 1s; }
 /* ---------------------- */
+
+/* ---- FLEX-SHRINK-CSS--- */
+
+.fShrink0{
+
+flex-shrink: 0;
+
+}
+
+/* ------------ */
+
+
+
