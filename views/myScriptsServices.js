@@ -108,6 +108,7 @@ function getRowDay(d) {
 
 // 3. Función que calcula y pinta la semana
 function renderWeek(startDate) {
+  rowMonday = 2, rowTuesday = 2, rowWednesday = 2, rowThursday = 2, rowFriday = 2, rowSaturday = 2
   myCalendar.innerHTML = '';       // limpiamos
   const year = startDate.getFullYear();
   const month = startDate.getMonth();
