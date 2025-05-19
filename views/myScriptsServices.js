@@ -30,25 +30,26 @@ console.log('año: ' + myDate.getFullYear())
 let inicial_day = myDate.getDate() - myDate.getDay()
 //console.log('dia inicial: ' + inicial_day)
 let myDaysOfWeek = []
-for(i = 0; i<7; i++){
-myDaysOfWeek.push(inicial_day+i)
+for (i = 0; i < 7; i++) {
+  myDaysOfWeek.push(inicial_day + i)
 }
 
 const myCalendar = document.getElementById('calendar1')
-const btnPrev    = document.getElementById('calendar1Prev');
-const btnNext    = document.getElementById('calendar1Next');
+const btnPrev = document.getElementById('calendar1Prev');
+const btnNext = document.getElementById('calendar1Next');
 
-const myHours = [
-    '9:00', '10:00', '11:00', '12:00',
-    '13:00', '14:00', '15:00', '16:00',
-    '17:00', '18:00', '19:00', '20:00',
-    '21:00', '22:00', '23:00'
-  ];
+const myHours = ['',
+  '10:00', '11:00', '12:00',
+  '13:00', '14:00', '15:00', '16:00',
+  '17:00', '18:00', '19:00'
+];
 
-  const dayNames = [
-    "Sun", "Mon", "Tues",
-    "Wed", "Thur", "Fri", "Sat"
-  ];
+const dayNames = [
+  "Sun", "Mon", "Tues",
+  "Wed", "Thur", "Fri", "Sat"
+];
+
+
 
 // --------------------INICIO DE LA LÓGICA DE CALENDARIO--------------
 
@@ -57,13 +58,61 @@ let weekStart = getWeekStart(new Date());  // hoy → domingo pasado o de hoy si
 let myProfesionalPicked_index = 1
 let scheduleData = [];
 
+let rowMonday = 2, rowTuesday = 2, rowWednesday = 2, rowThursday = 2, rowFriday = 2, rowSaturday = 2
+
+// ----PEQUEÑA LOGICA PARA ORGANIZAR LAS CELDAS DISPONIBLES PARA AGENDAR EN BASE A LOS INDEX DE LOS DIAS---
+
+function updateRowDay(day) {
+  switch (day) {
+    case 1:
+      rowMonday++;
+      break;
+    case 2:
+      rowTuesday++;
+      break;
+    case 3:
+      rowWednesday++;
+      break;
+    case 4:
+      rowThursday++;
+      break;
+    case 5:
+      rowFriday++;
+      break;
+    case 6:
+      rowSaturday++;
+      break;
+
+  }
+}
+
+function getRowDay(d) {
+  switch (d) {
+    case 1:
+      return rowMonday;
+    case 2:
+      return rowTuesday;
+    case 3:
+      return rowWednesday;
+    case 4:
+      return rowThursday;
+    case 5:
+      return rowFriday;
+    case 6:
+      return rowSaturday;
+
+  }
+}
+
+// -----------------------------------------------------------
+
 // 3. Función que calcula y pinta la semana
 function renderWeek(startDate) {
   myCalendar.innerHTML = '';       // limpiamos
-  const year  = startDate.getFullYear();
+  const year = startDate.getFullYear();
   const month = startDate.getMonth();
-  const daysInMonth     = new Date(year, month+1, 0).getDate();
-  const daysInPrevMonth = new Date(year, month,   0).getDate();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const daysInPrevMonth = new Date(year, month, 0).getDate();
 
   for (let hourIdx = 0; hourIdx < myHours.length; hourIdx++) {
     // recorremos cada día de la semana
@@ -74,44 +123,60 @@ function renderWeek(startDate) {
 
       if (raw < 1) {
         day = daysInPrevMonth + raw;
-        m   = month - 1;
+        m = month - 1;
       } else if (raw > daysInMonth) {
         day = raw - daysInMonth;
-        m   = month + 1;
+        m = month + 1;
       } else {
         day = raw;
       }
 
-      if (m < 0)  { m = 11; y = year - 1; }
-      if (m > 11) { m = 0;  y = year + 1; }
+      if (m < 0) { m = 11; y = year - 1; }
+      if (m > 11) { m = 0; y = year + 1; }
+
+
 
       const cell = document.createElement('div');
       cell.className = 'cell1';
       cell.classList.add('ff2', 'fw300', 'fs12');
-
+      // ---logica ara inhabilitar todo el dia de domingos, esos dias no se labora.----
+    
+      // --------------------------------------------------------------------------------
       if (hourIdx === 0) {
-        cell.classList.add('bcFirst','cWhite');
-        cell.innerHTML = `${day}/${m+1}<br>${dayNames[d]}`;
+        cell.classList.add('bcFirst', 'cWhite');
+        cell.innerHTML = `${day}/${m + 1}<br>${dayNames[d]}`;
       } else {
-        let dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`
+        89
+        let dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
         let hourStr = myHours[hourIdx]
-         // ————— Aquí comparas con scheduleData —————
-         const match = scheduleData.find(ev =>
-          ev.date  === dateStr &&
-          ev.hour  === hourStr
+        // ————— Aquí comparas con scheduleData —————
+        const match = scheduleData.find(ev =>
+          ev.date === dateStr &&
+          ev.hour === hourStr
         );
+        //  --------AQUI TENGO QUE APLICAR UNA LOGICA RARA PARA PODER VER COMO ORGANIZAR LAS DISPONIBLES-----
+      
         if (match) {
           // Añade la clase con el nombre del estado, p.ej. 'AV', 'BS' o 'NAV'
-          cell.classList.add(match.status);
-          if(match.status == "AV"){
+
+          if (match.status == "AV" && d != 0) {
+            cell.classList.add(match.status);
             cell.style.setProperty('cursor', 'pointer')
+            cell.style.gridRow = getRowDay(d)
+            cell.style.gridColumn = d + 1
             cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+            cell.textContent = myHours[hourIdx];
+            cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            cell.dataset.hour = myHours[hourIdx];
+            updateRowDay(d)
           }
+         
+
         }
+        // ----------------------------fin de logica de organizacion de disponibildad
+       
         // cell.classList.add('bcLightWhite2','fs12');
-        cell.textContent = myHours[hourIdx];
-        cell.dataset.date = `${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-        cell.dataset.hour = myHours[hourIdx];
+
       }
 
       myCalendar.appendChild(cell);
@@ -122,32 +187,32 @@ function renderWeek(startDate) {
 const modalOverlay1 = document.getElementById('modalOverlay1');
 const closeBtn1 = document.getElementById('closeBtn1');
 
-  // Cerrar modal al hacer clic en la X
-  closeBtn1.addEventListener('click', () => {
+// Cerrar modal al hacer clic en la X
+closeBtn1.addEventListener('click', () => {
+  modalOverlay1.style.display = 'none';
+});
+
+
+// Cerrar modal al hacer clic fuera del modal (en el overlay)
+modalOverlay1.addEventListener('click', (event) => {
+  // Solo cerrar si el clic es en el overlay, no dentro del modal
+  if (event.target === modalOverlay1) {
     modalOverlay1.style.display = 'none';
-  });
+  }
+});
 
-
-  // Cerrar modal al hacer clic fuera del modal (en el overlay)
-  modalOverlay1.addEventListener('click', (event) => {
-    // Solo cerrar si el clic es en el overlay, no dentro del modal
-    if (event.target === modalOverlay1) {
-      modalOverlay1.style.display = 'none';
-    }
-  });
-
-function openModal(date, hour, usr_id){
+function openModal(date, hour, usr_id) {
   modalOverlay1.style.display = 'flex';
   const myModalContent1 = document.getElementById('modalContent1')
-  myModalContent1.innerHTML= `
+  myModalContent1.innerHTML = `
                <div class="w100 h100  dFlex jcCenter aiCenter">
-                        <img src="../images/${myMembersImgs[myProfesionalPicked_index-1]}" class="br50per myImg2 b5_solid_white">
+                        <img src="../images/${myMembersImgs[myProfesionalPicked_index - 1]}" class="br50per myImg2 b5_solid_white">
                 </div>
 
                 <div class="w100 h100  dFlex jcCenter fdColumn aiCenter gap5 bsBorderBox pl10 pr10">
-                        <label class="fw200 ff1 fs6 cThird">${myMembersNames[myProfesionalPicked_index-1]}</label>
+                        <label class="fw200 ff1 fs6 cThird">${myMembersNames[myProfesionalPicked_index - 1]}</label>
                         <div class="line3"></div>
-                        <label class="fw200 ff2 fs3 cWhite">${myMembersJob[myProfesionalPicked_index-1]}</label>
+                        <label class="fw200 ff2 fs3 cWhite">${myMembersJob[myProfesionalPicked_index - 1]}</label>
                 </div>
   `
 }
@@ -218,15 +283,15 @@ async function loadAndRender() {
 
 loadAndRender()
 
-myImgGlow.forEach((el,index)=>{
-  el.addEventListener('click', ()=>{
-    myProfesionalPicked_index = index+1
-    console.log('el index de la profesional es: ' +  myProfesionalPicked_index)
-loadAndRender()
+myImgGlow.forEach((el, index) => {
+  el.addEventListener('click', () => {
+    myProfesionalPicked_index = index + 1
+    console.log('el index de la profesional es: ' + myProfesionalPicked_index)
+    loadAndRender()
     el.classList.add('b5_solid_white')
-    myImgGlow.forEach(el2 =>{
-      if(el2 != el){
-       
+    myImgGlow.forEach(el2 => {
+      if (el2 != el) {
+
         el2.classList.remove('b5_solid_white')
       }
     })
