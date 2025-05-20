@@ -1976,6 +1976,14 @@ flex-shrink: 0;
   color: lightgray;
 }
 
+.phLightGray2::placeholder {
+  color: rgb(230, 230, 230);
+}
+
+.phLightGray3::placeholder {
+  color: rgb(184, 184, 184);
+}
+
 /* ------------------- */
 
 /* --------- FONT-SIZE-CSS ----------- */
