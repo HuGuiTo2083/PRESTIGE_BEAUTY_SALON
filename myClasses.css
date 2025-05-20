@@ -484,6 +484,10 @@ background-color: black;
     background-color: gray;
 }
 
+.bcTransparent{
+    background-color: transparent;
+}
+
 
 
 /* ------------------- */
@@ -1756,5 +1760,220 @@ flex-shrink: 0;
 
 /* ------------ */
 
+.bfBlur1px {
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+  }
+  .bfBlur2px {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  .bfBlur3px {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+  .bfBlur4px {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .bfBlur5px {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  .bfBlur6px {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .bfBlur7px {
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+  }
+  .bfBlur8px {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .bfBlur9px {
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+  }
+  .bfBlur10px {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .bfBlur11px {
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(11px);
+  }
+  .bfBlur12px {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .bfBlur13px {
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+  }
+  .bfBlur14px {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .bfBlur15px {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+  .bfBlur16px {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .bfBlur17px {
+    backdrop-filter: blur(17px);
+    -webkit-backdrop-filter: blur(17px);
+  }
+  .bfBlur18px {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .bfBlur19px {
+    backdrop-filter: blur(19px);
+    -webkit-backdrop-filter: blur(19px);
+  }
+  .bfBlur20px {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+/* ------- COLOR-CSS ----- */
 
 
+.cWhite {
+    color: white;
+  }
+  
+  .cBlack {
+    color: black;
+  }
+  
+  .cGray {
+    color: gray;
+  }
+  
+  .cRed {
+    color: red;
+  }
+  
+  .cTomato {
+    color: tomato;
+  }
+  
+  .cPurple {
+    color: purple;
+  }
+  
+  .cBlue {
+    color: blue;
+  }
+  
+  .cGreen {
+    color: green;
+  }
+  
+  .cOrange {
+    color: orange;
+  }
+  
+  .cYellow {
+    color: yellow;
+  }
+  
+  .cPink {
+    color: pink;
+  }
+  
+  .cCyan {
+    color: cyan;
+  }
+  
+  .cMagenta {
+    color: magenta;
+  }
+  
+  .cBrown {
+    color: brown;
+  }
+  
+  .cGold {
+    color: gold;
+  }
+  
+  .cLightGray {
+    color: lightgray;
+  }
+
+  /* ----------------------- */
+
+/* --------- PLACEHOLDER-CSS ------------ */
+
+  .phWhite::placeholder {
+    color: white;
+  }
+  
+  .phBlack::placeholder {
+    color: black;
+  }
+  
+  .phGray::placeholder {
+    color: gray;
+  }
+  
+  .phRed::placeholder {
+    color: red;
+  }
+  
+  .phTomato::placeholder {
+    color: tomato;
+  }
+  
+  .phPurple::placeholder {
+    color: purple;
+  }
+  
+  .phBlue::placeholder {
+    color: blue;
+  }
+  
+  .phGreen::placeholder {
+    color: green;
+  }
+  
+  .phOrange::placeholder {
+    color: orange;
+  }
+  
+  .phYellow::placeholder {
+    color: yellow;
+  }
+  
+  .phPink::placeholder {
+    color: pink;
+  }
+  
+  .phCyan::placeholder {
+    color: cyan;
+  }
+  
+  .phMagenta::placeholder {
+    color: magenta;
+  }
+  
+  .phBrown::placeholder {
+    color: brown;
+  }
+  
+  .phGold::placeholder {
+    color: gold;
+  }
+  
+  .phLightGray::placeholder {
+    color: lightgray;
+  }
+
+  /* ------------------- */
