@@ -157,6 +157,12 @@ margin:0;
     /* background-color: #333333; */
 }
 
+.myImg9{
+  width: clamp(80px, 15vw, 100px);
+ 
+  /* background-color: #333333; */
+}
+
 .myImg3{
     width: clamp(30px, 7vw, 60px);
     height: clamp(30px, 7vw, 60px);
@@ -423,6 +429,15 @@ h1{
   .bcLG_180deg_thirdFourth{
     background: linear-gradient(180deg, var(--third) 0%, var(--fourth) 100%);
 
+  }
+
+  .bcLG_180deg_SecondFourth_anim {
+    /* degradado original */
+    background: linear-gradient(180deg, var(--second) 0%, var(--fourth) 100%);
+    /* hacemos el fondo más alto que el contenedor para poder desplazarlo */
+    background-size: 100% 200%;
+    /* animación continua */
+    animation: moveGradient 4s linear infinite;
   }
 
 

@@ -10,4 +10,9 @@ myBtBackMenu.addEventListener('click', ()=>{
 
 })
 
+const btViewLogin = document.getElementById('btViewLogin')
+btViewLogin.addEventListener('click', ()=>{
+    window.location.href = 'views/Login.html'
+})
+
 

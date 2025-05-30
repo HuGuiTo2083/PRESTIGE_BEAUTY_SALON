@@ -318,7 +318,9 @@
   grid-template-rows: 1fr;
 }
 
-
+.gtr_1_3{
+  grid-template-rows: 1fr 3fr;
+}
 
 .gtr_1_4{
   grid-template-rows: 1fr 4fr;
@@ -326,6 +328,10 @@
 
 .gtr_1_5{
   grid-template-rows: 1fr 5fr;
+}
+
+.gtr_1_7{
+grid-template-rows: 1fr 7fr;
 }
 
 .gtr_1_8{
@@ -341,6 +347,11 @@
   
 }
 
+.gtr_1_3_1{
+grid-template-rows: 1fr 3fr 1fr;
+
+}
+
 
 .gtr_1_3_2{
 grid-template-rows: 1fr 3fr 2fr;
@@ -353,6 +364,19 @@ grid-template-rows: 1fr 3fr 2fr;
 
 .gtr_4_1{
   grid-template-rows: 4fr 1fr;
+}
+
+.gtr_0-5_1{
+  grid-template-rows: 0.5fr 1fr;
+}
+
+
+.gtr_8_1{
+grid-template-rows: 8fr 1fr;
+}
+
+.gtr_8_auto{
+grid-template-rows: 8fr auto;
 }
 
 .gtr_0-5_4_1{
@@ -550,6 +574,10 @@ background-color: black;
   justify-content: space-between;
 }
 
+.jcSpaceAround{
+justify-content: space-around;
+}
+
 /* ------------------- */
 
 /* BOX-SIZING-CSS */
@@ -597,6 +625,10 @@ background-color: black;
 
 .o0-9{
   opacity: 0.9;
+}
+
+.o0{
+opacity: 0;
 }
 
 
@@ -920,6 +952,33 @@ background-color: black;
   border-radius: 5rem;
 }
 
+/* ─── ESQUINA SUPERIOR-IZQUIERDA ─────────────────────────── */
+.brTopLeft1  { border-top-left-radius: 1rem; }
+.brTopLeft2  { border-top-left-radius: 2rem; }
+.brTopLeft3  { border-top-left-radius: 3rem; }
+.brTopLeft4  { border-top-left-radius: 4rem; }
+.brTopLeft5  { border-top-left-radius: 5rem; }
+
+/* ─── ESQUINA SUPERIOR-DERECHA ───────────────────────────── */
+.brTopRight1 { border-top-right-radius: 1rem; }
+.brTopRight2 { border-top-right-radius: 2rem; }
+.brTopRight3 { border-top-right-radius: 3rem; }
+.brTopRight4 { border-top-right-radius: 4rem; }
+.brTopRight5 { border-top-right-radius: 5rem; }
+
+/* ─── ESQUINA INFERIOR-IZQUIERDA ─────────────────────────── */
+.brBottomLeft1  { border-bottom-left-radius: 1rem; }
+.brBottomLeft2  { border-bottom-left-radius: 2rem; }
+.brBottomLeft3  { border-bottom-left-radius: 3rem; }
+.brBottomLeft4  { border-bottom-left-radius: 4rem; }
+.brBottomLeft5  { border-bottom-left-radius: 5rem; }
+
+/* ─── ESQUINA INFERIOR-DERECHA ───────────────────────────── */
+.brBottomRight1 { border-bottom-right-radius: 1rem; }
+.brBottomRight2 { border-bottom-right-radius: 2rem; }
+.brBottomRight3 { border-bottom-right-radius: 3rem; }
+.brBottomRight4 { border-bottom-right-radius: 4rem; }
+.brBottomRight5 { border-bottom-right-radius: 5rem; }
 
 
 
@@ -1427,6 +1486,11 @@ border-radius: 50%;
 .gc_span3{
   grid-column: span 3;
 }
+
+
+.gc_span4{
+grid-column: span 4;
+}
 .gc_1_span2 { grid-column: 1 / span 2; }
 
 .gc_1_span3 { grid-column: 1 / span 3; }
@@ -1602,6 +1666,28 @@ border-radius: 50%;
 .top0{
   top:0;
 }
+
+.top10  { top: 10px; }
+.top20  { top: 20px; }
+.top30  { top: 30px; }
+.top40  { top: 40px; }
+.top50  { top: 50px; }
+.top60  { top: 60px; }
+.top70  { top: 70px; }
+.top80  { top: 80px; }
+.top90  { top: 90px; }
+.top100 { top: 100px; }
+.top110 { top: 110px; }
+.top120 { top: 120px; }
+.top130 { top: 130px; }
+.top140 { top: 140px; }
+.top150 { top: 150px; }
+.top160 { top: 160px; }
+.top170 { top: 170px; }
+.top180 { top: 180px; }
+.top190 { top: 190px; }
+.top200 { top: 200px; }
+
 
 /* ----------------- */
 
@@ -2113,16 +2199,21 @@ font-size: clamp(13px, 1.5vw, 15px);
 font-size: clamp(15px, 10vw, 80px)
 }
 
+.fs14{
+font-size: clamp(20px, 4.2vw, 30px);
+}
 
 .fs6{
 font-size: clamp(20px, 4.2vw, 35px);
 }
 
+
+
 .fs7{
 font-size: clamp(20px, 6vw, 60px);
 }
 
-.fs8{
+.fs13{
 font-size: clamp(30px, 13vw, 60px);
 }
 
@@ -2155,6 +2246,68 @@ font-size: clamp(30px, 13vw, 60px);
 
 /* ---------------------------- */
 
+/* ------------ HOVER-CSS -------------- */
 
+.hoverRed:hover {
+background-color: red;
+}
+
+.hoverBlue:hover {
+background-color: blue;
+}
+
+.hoverGreen:hover {
+background-color: green;
+}
+
+.hoverYellow:hover {
+background-color: yellow;
+}
+
+.hoverOrange:hover {
+background-color: orange;
+}
+
+.hoverPurple:hover {
+background-color: purple;
+}
+
+.hoverGray:hover {
+background-color: gray;
+}
+
+.hoverLightBlack:hover {
+background-color: rgb(66, 66, 66);
+}
+
+
+
+.hoverLight:hover {
+filter: contrast(1.3);
+}
+
+
+.hoverDark:hover {
+filter: contrast(0.5);
+}
+
+
+/* ------------------------------------------ */
+
+
+/* ----------FLEX-CSS------- */
+.flex1{
+flex: 1;
+}
+
+/* -------------- */
+
+/* --------RESIZE-CSS-- */
+
+.resizeNone{
+resize: none;
+}
+
+/* ----------------------- */
 
 
