@@ -202,6 +202,7 @@ modalOverlay1.addEventListener('click', (event) => {
   }
 });
 
+
 function openModal(date, hour, usr_id) {
   modalOverlay1.style.display = 'flex';
   const myModalContent1 = document.getElementById('modalContent1')

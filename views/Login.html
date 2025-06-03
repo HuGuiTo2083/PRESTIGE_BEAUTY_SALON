@@ -12,18 +12,44 @@
 </head>
 
 <body class="bcLG_180deg_SecondFourth_anim h100vh w100vw bsBorderBox p10 dFlex aiCenter jcCenter  pRelative  ">
-    
-     <!-- -------------CUADRO DE LOGIN---------- -->
-      <div class="w_resp w50vw h60vh bcFirst br1 dGrid gtc_1 gtr_1_3 oHidden">
-<div class="w100 h100 dFlex jcCenter aiCenter ">
-<img src="../icons/icon_alone2_png.png" class="myImg9">
-</div>
 
-      </div>
-     <!-- -------------------------------------- -->
+    <!-- -------------CUADRO DE LOGIN---------- -->
+    <div class="w_resp w50vw h60vh bcLG_180deg_firstLightFirst_anim br1 dGrid gtc_1 gtr_1_2_0-5 oHidden">
+        <!-- ---------------PARTE DONDE VIENE EL LOGO------------- -->
+        <div class="w100 h100 dFlex jcCenter aiCenter ">
+            <img src="../icons/icon_alone_png.png" class="myImg9">
+        </div>
+        <!-- ---------PARTE DONDE VIENE EL FORMULARIO---------- -->
+         <div class="w100 h100  dFlex jcStart aiCenter gap20 fdColumn">
+          <input type="text" placeholder="Email" class=" glow1_white inResp br5px h10 w50 bNone bsBorderBox pl20 fs3 outlineNone ff2" id="inEmailLogin">
+          <input type="text" placeholder="Password" class="glow1_white inResp br5px h10 w50 bNone bsBorderBox pl20 fs3 outlineNone ff2" id="inPasswordLogin">
+        <button class="btRespp fs3 ff2 fw300 h10 w30 br10px bNone bcThird cPointer hoverLight trans0-3" id="btLogin">Log In</button>
+         </div>
+         <!-- -------------------------PARTE PARA REGISTRAR UNA CUENTA-------------------- -->
+          <div class="w100 h100  dFlex gap10 aiCenter jcCenter">
+            <label class="ff2 fs10 cWhite bsBorderBox pl20 pr20">
+                Don't have an account? Sign up
+                 <span class="cBlack tdUnderline cPointer" id="btChangeRegister">Here</span></label>
+          </div>
+<!-- -------------------------------- -->
+    </div>
+    <!-- -------------------------------------- -->
+      <!-- --------------------MODAL DE SERVCICIOS Y CONFIRMACION--------------- -->
 
+      <div class="modal-overlay1 dGrid" id="modalOverlay2">
+        <div class="modal1 bcFirst h50vh" id="modal2">
+            <button class="close-btn1" id="closeBtn2" aria-label="Cerrar modal">&times;</button>
+            <div class="w100 h100  "></div>
+            <div class="w100 h100  pRelative dFlex jcCenter aiCenter gap20 fdColumn">
+             <img src="../icons/Success.png" class="myImg8">
+             <label class="fs6 ff2 fw600 cWhite">Login Successfully</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------- -->
     <script src="../myScripts.js"></script>
-    <script src="myScriptsServices.js"></script>
+    <script src="../scripts/myLoginScripts.js"></script>
 
 </body>
 

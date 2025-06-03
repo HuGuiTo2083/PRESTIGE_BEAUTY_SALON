@@ -392,6 +392,10 @@ grid-template-rows: 8fr auto;
   grid-template-rows: 1fr 2fr 1fr;
 }
 
+.gtr_1_2_0-5 {
+  grid-template-rows: 1fr 2fr 0.5fr;
+}
+
 .gtr_2_1_1 {
   grid-template-rows: 2fr 1fr 1fr;
 }

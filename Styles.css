@@ -1,5 +1,6 @@
 :root{
    --first: #a49695;
+   --first-light: #e7dbda;
    --second: #f5eedf;
    --third: #eae0d6;
    --fourth: #c5ac8e;
@@ -449,6 +450,12 @@ h1{
     /* animación continua */
     animation: moveGradient 4s linear infinite;
   }
+
+  .bcLG_180deg_firstLightFirst_anim {
+    background: linear-gradient(180deg, var(--first-light) 0%, var(--first) 100%);
+    background-size: 100% 200%;
+    animation: moveGradient 4s linear infinite;
+  }
   
   @keyframes moveGradient {
     0%   { background-position: 0% 0%;   }
@@ -697,6 +704,7 @@ color:white;
     box-sizing: border-box;
   }
 
+ 
   /* Botón cerrar (equis) */
   .close-btn1 {
     position: absolute;
