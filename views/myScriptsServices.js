@@ -160,7 +160,7 @@ function renderWeek(startDate) {
         if (match) {
           // Añade la clase con el nombre del estado, p.ej. 'AV', 'BS' o 'NAV'
 
-          if (match.status == "AV" && d != 0) {
+          if (match.status != "BS" && match.status != "NAV" && d != 0) {
             cell.classList.add(match.status);
             cell.style.setProperty('cursor', 'pointer')
             cell.style.gridRow = getRowDay(d)
@@ -171,6 +171,21 @@ function renderWeek(startDate) {
             cell.dataset.hour = myHours[hourIdx];
             updateRowDay(d)
           }
+         
+
+        }
+        else{
+         if(d!= 0){
+          cell.classList.add('AV');
+          cell.style.setProperty('cursor', 'pointer')
+          cell.style.gridRow = getRowDay(d)
+          cell.style.gridColumn = d + 1
+          cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+          cell.textContent = myHours[hourIdx];
+          cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+          cell.dataset.hour = myHours[hourIdx];
+          updateRowDay(d)
+         }
          
 
         }
