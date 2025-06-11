@@ -29,6 +29,12 @@ btTraining.addEventListener('click', ()=>{
   window.location.href='https://www.beautyguild.com/Training/'
 })
 
+const btProducts = document.getElementById('btProducts')
+btProducts.addEventListener('click', ()=>{
+  window.location.href='https://tropicskincare.com/pages/teresahickman'
+})
+
+
 
 
 
