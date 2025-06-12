@@ -1882,6 +1882,7 @@ grid-column: span 4;
   border: 1px solid white;
 }
 
+
 .b2_solid_white{
   border: 2px solid white;
 }
@@ -1901,6 +1902,25 @@ grid-column: span 4;
 .b6_solid_white{
   border: 6px solid white;
 }
+
+/* Éxito (verde) – bordes de 1 px a 6 px */
+.b1_solid_success { border: 1px solid #33e62d; }
+.b2_solid_success { border: 2px solid #33e62d; }
+.b3_solid_success { border: 3px solid #33e62d; }
+.b4_solid_success { border: 4px solid #33e62d; }
+.b5_solid_success { border: 5px solid #33e62d; }
+.b6_solid_success { border: 6px solid #33e62d; }
+
+/* Error (rojo) – bordes de 1 px a 6 px */
+.b1_solid_error   { border: 1px solid #e62d2d; }
+.b2_solid_error   { border: 2px solid #e62d2d; }
+.b3_solid_error   { border: 3px solid #e62d2d; }
+.b4_solid_error   { border: 4px solid #e62d2d; }
+.b5_solid_error   { border: 5px solid #e62d2d; }
+.b6_solid_error   { border: 6px solid #e62d2d; }
+
+
+
 
 .bNone{
   border: none;
