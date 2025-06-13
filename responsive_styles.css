@@ -11,6 +11,9 @@
     .inResp{
         width: 70% !important;
     }
+   .gResp{
+    margin-left:  30px !important;
+   }
    
   }
 
@@ -35,6 +38,10 @@
 }
      .inResp{
        height: 13% !important;
+    }
+
+    .myHResp{
+        height: 65vh !important;
     }
     
 }

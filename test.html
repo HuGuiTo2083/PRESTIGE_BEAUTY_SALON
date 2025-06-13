@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo – Loader “Cargando”</title>
+
+  <style>
+    /* ======== SPINNER / LOADER ======== */
+    .loader {
+      width: 3rem;                  /* diámetro del aro */
+      height: 3rem;
+      border: 0.4rem solid #d3d3d3; /* color base (gris) + grosor */
+      border-top-color: #007bff;    /* color visible (azul)        */
+      border-radius: 50%;           /* hace el círculo             */
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ======== OPCIONAL: CENTRAR EN PANTALLA ======== */
+    .loader--center {
+      position: fixed;
+      inset: 0;      /* top, right, bottom, left = 0 */
+      margin: auto;  /* lo centra respecto al viewport */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loader centrado -->
+  <div class="loader loader--center" role="status" aria-label="Cargando…"></div>
+
+  <!-- Ejemplo: ocultar el loader tras “terminar” la carga -->
+  <script>
+    // Simulación de tarea asíncrona (2 s). Sustituye por tu lógica real.
+    setTimeout(() => {
+      document.querySelector('.loader').style.display = 'none';
+    }, 2000);
+  </script>
+
+</body>
+</html>

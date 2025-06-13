@@ -14,11 +14,12 @@ const params = new URLSearchParams(query);
 
 if (params.has('myId')) {                     // o: params.get('myId') !== null
   const myIdNum = params.get('myId'); // ya seguro de que existe
+  const myType = params.get('myType');
   console.log('ID recibido:', myIdNum);
   
 ButtonsServices.forEach((button)=>{
   button.addEventListener('click', ()=>{
-    window.location.href=`views/services.html?myId=${myIdNum}`
+    window.location.href=`views/services.html?myId=${myIdNum}&myType=${myType}`
   })
 })
 } else {
@@ -66,7 +67,7 @@ if (myLogin) {
 
   myLogin.addEventListener('click', async () => {
     console.log('hola')
-    const resp = await fetch('http://127.0.0.1:5000/login', {
+    const resp = await fetch('https://prestige-beauty-backend.vercel.app/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
@@ -101,7 +102,7 @@ if (myLogin) {
       myModal.style.display = 'grid'
 
       setTimeout(()=>{
-        window.location.href=`../index.html?myId=${response.rows[0].usr_id}`
+        window.location.href=`../index.html?myId=${response.rows[0].usr_id}&myType=${response.rows[0].usr_type_user}`
       }, 2000)
 
     }
@@ -265,7 +266,7 @@ btRegister.addEventListener('click', async ()=>{
     return false
   }
   try {
-    const resp = await fetch('http://127.0.0.1:5000/regist', {
+    const resp = await fetch('https://prestige-beauty-backend.vercel.app/regist', {
       method : 'POST',
       headers : {'Content-Type': 'application/json'},
       body : JSON.stringify({
@@ -300,7 +301,7 @@ btRegister.addEventListener('click', async ()=>{
       myModal.style.display = 'grid'
 
       setTimeout(()=>{
-        window.location.href=`../index.html?myId=${json.id}`
+        window.location.href=`../index.html?myId=${json.id}&myType=${json.type}`
       }, 2000)
 
     }
