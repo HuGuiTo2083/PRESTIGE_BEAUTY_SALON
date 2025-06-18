@@ -73,6 +73,10 @@
         height: 65vh !important;
     }
 
+    .pedidoResp{
+        height: 20vh !important;
+    }
+
 }
 
 @media only screen and (min-width: 1200px) {}

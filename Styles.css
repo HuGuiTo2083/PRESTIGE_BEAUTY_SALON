@@ -754,6 +754,22 @@ color:white;
     width: 100%;
 }
 
+.Rechazada button, .Aceptada button {
+/* background-color: #33f8a6; */
+ display:  none;
+}
+
+.Rechazada{
+
+}
+
+.Aceptada{
+  
+}
+
+
+
+
 @media screen and (min-width: 1024px) and (max-height: 1000px) {
    
     .vh_resp{
