@@ -104,7 +104,7 @@ async function myRequests() {
 async function  myReject(id, idContainer){
     const conteainer = document.getElementById(idContainer)
     conteainer.classList.add('Rechazada')
-    const response = await fetch('http://127.0.0.1:5000/reject_Request', {
+    const response = await fetch('https://prestige-beauty-backend.vercel.app/reject_Request', {
       method : 'POST',
       headers: {'Content-Type': 'application/json'},
       body : JSON.stringify({id : id})
@@ -119,7 +119,7 @@ async function  myReject(id, idContainer){
 async function myAccept(id, idContainer){
     const conteainer = document.getElementById(idContainer)
     conteainer.classList.add('Aceptada')
-     const response = await fetch('http://127.0.0.1:5000/accept_Request', {
+     const response = await fetch('https://prestige-beauty-backend.vercel.app/accept_Request', {
       method : 'POST',
       headers: {'Content-Type': 'application/json'},
       body : JSON.stringify({id : id})
