@@ -24,7 +24,7 @@ specialistJob.innerHTML = current_job
 const nameMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 async function myRequests() {
-    const response = await fetch('http://127.0.0.1:5000/getRequests', {
+    const response = await fetch('https://prestige-beauty-backend.vercel.app/getRequests', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -101,16 +101,32 @@ async function myRequests() {
 
 }
 
-function myReject(id, idContainer){
+async function  myReject(id, idContainer){
     const conteainer = document.getElementById(idContainer)
     conteainer.classList.add('Rechazada')
+    const response = await fetch('http://127.0.0.1:5000/reject_Request', {
+      method : 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body : JSON.stringify({id : id})
+    })
+
+    console.log("reject: " , response)
+
  console.log('id recibudo: ' + idContainer)
 }
 
 
-function myAccept(id, idContainer){
+async function myAccept(id, idContainer){
     const conteainer = document.getElementById(idContainer)
     conteainer.classList.add('Aceptada')
+     const response = await fetch('http://127.0.0.1:5000/accept_Request', {
+      method : 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body : JSON.stringify({id : id})
+    })
+
+    console.log("accept: " , response)
+
  console.log('Aceptada')
 }
 

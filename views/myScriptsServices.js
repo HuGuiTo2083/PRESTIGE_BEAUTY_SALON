@@ -1,5 +1,5 @@
 
-
+let USER_ACTIVE = false
 // let myDate = Date.now()
 // let myFullDate = new Date(myDate)
 // console.log("full: " + myFullDate)
@@ -57,7 +57,7 @@ const dayNames = [
 let weekStart = getWeekStart(new Date());  // hoy → domingo pasado o de hoy si es domingo
 let myProfesionalPicked_index = 1
 let scheduleData = [];
-
+let scheduleDataUser = [];
 let rowMonday = 2, rowTuesday = 2, rowWednesday = 2, rowThursday = 2, rowFriday = 2, rowSaturday = 2
 
 // ----PEQUEÑA LOGICA PARA ORGANIZAR LAS CELDAS DISPONIBLES PARA AGENDAR EN BASE A LOS INDEX DE LOS DIAS---
@@ -141,7 +141,7 @@ function renderWeek(startDate) {
       cell.className = 'cell1';
       cell.classList.add('ff2', 'fw300', 'fs12');
       // ---logica ara inhabilitar todo el dia de domingos, esos dias no se labora.----
-    
+
       // --------------------------------------------------------------------------------
       if (hourIdx === 0) {
         cell.classList.add('bcFirst', 'cWhite');
@@ -155,12 +155,34 @@ function renderWeek(startDate) {
           ev.date === dateStr &&
           ev.hour === hourStr
         );
+        let match2
+
+        if (USER_ACTIVE && scheduleDataUser && scheduleDataUser.length > 0) {
+          match2 = scheduleDataUser.find(ev =>
+            ev.date === dateStr &&
+            ev.hour === hourStr
+          );
+          console.log('match2: ', match2)
+        }
         //  --------AQUI TENGO QUE APLICAR UNA LOGICA RARA PARA PODER VER COMO ORGANIZAR LAS DISPONIBLES-----
-      
+
         if (match) {
           // Añade la clase con el nombre del estado, p.ej. 'AV', 'BS' o 'NAV'
+          if (USER_ACTIVE) {
+            if (match2) {
+              cell.classList.add(match.status);
+              cell.style.setProperty('cursor', 'pointer')
+              cell.style.gridRow = getRowDay(d)
+              cell.style.gridColumn = d + 1
+              cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+              cell.innerHTML = `${myHours[hourIdx]} <br> ${match2.service}`;
+              cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+              cell.dataset.hour = myHours[hourIdx];
+              updateRowDay(d)
+            }
 
-          if (match.status != "BS" && match.status != "NAV" && d != 0) {
+          }
+          if (match.status != "BS" && match.status != "PND" && match.status != "NAV" && match.status != "ACC" && match.status != "REJ" && d != 0) {
             cell.classList.add(match.status);
             cell.style.setProperty('cursor', 'pointer')
             cell.style.gridRow = getRowDay(d)
@@ -171,26 +193,26 @@ function renderWeek(startDate) {
             cell.dataset.hour = myHours[hourIdx];
             updateRowDay(d)
           }
-         
+
 
         }
-        else{
-         if(d!= 0){
-          cell.classList.add('AV');
-          cell.style.setProperty('cursor', 'pointer')
-          cell.style.gridRow = getRowDay(d)
-          cell.style.gridColumn = d + 1
-          cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
-          cell.textContent = myHours[hourIdx];
-          cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-          cell.dataset.hour = myHours[hourIdx];
-          updateRowDay(d)
-         }
-         
+        else {
+          if (d != 0) {
+            cell.classList.add('AV');
+            cell.style.setProperty('cursor', 'pointer')
+            cell.style.gridRow = getRowDay(d)
+            cell.style.gridColumn = d + 1
+            cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+            cell.textContent = myHours[hourIdx];
+            cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            cell.dataset.hour = myHours[hourIdx];
+            updateRowDay(d)
+          }
+
 
         }
         // ----------------------------fin de logica de organizacion de disponibildad
-       
+
         // cell.classList.add('bcLightWhite2','fs12');
 
       }
@@ -219,6 +241,7 @@ modalOverlay1.addEventListener('click', (event) => {
 
 
 function openModal(date, hour, usr_id) {
+  console.log(date + " " + hour + " " + usr_id)
   modalOverlay1.style.display = 'flex';
   const myModalContent1 = document.getElementById('modalContent1')
   myModalContent1.innerHTML = `
@@ -232,6 +255,41 @@ function openModal(date, hour, usr_id) {
                         <label class="fw200 ff2 fs3 cWhite">${myMembersJob[myProfesionalPicked_index - 1]}</label>
                 </div>
   `
+
+  const modaleSservices = document.getElementById('modalServices')
+  modaleSservices.innerHTML = `
+ <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Eeyelash', '${date}', '${hour}', ${usr_id})">E Y E L A S H <br> E X T E N S I O N</div>
+                    <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Eyebrows', '${date}', '${hour}', ${usr_id})">E Y E B R O W S</div>
+                    <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Facials',  '${date}', '${hour}', ${usr_id})"> F A C I A L S</div>
+                    <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Make Up',  '${date}', '${hour}', ${usr_id})">M A K E &nbsp;&nbsp; U P</div>
+                    <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Tanning',  '${date}', '${hour}', ${usr_id})">T A N N I N G</div>
+                    <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Spray Tans', '${date}', '${hour}', ${usr_id})">S P R A Y <br> T A N S</div>
+                    <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Nails', '${date}', '${hour}', ${usr_id})">N A I L S</div>
+                    <div class="br2 w100 h100px bcSecond width_responsive fShrink0 dFlex jcCenter aiCenter ff1 cFirst fw400 fs4 bsBorderBox p10 cPointer" onclick="bookService('Hair Removal', '${date}', '${hour}', ${usr_id})">H A I R <br> R E M O V A L</div>
+
+`
+
+}
+
+async function bookService(service, date, hour, artist_id) {
+  const query = window.location.search;
+  const params = new URLSearchParams(query);
+  if (params.has('myId')) {
+    const user_id = params.get('myId')
+    const res = await fetch('https://prestige-beauty-backend.vercel.app/book_Service', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service: service, date: date, hour: hour, artist_id: artist_id, user_id: user_id })
+    });
+
+    console.log(res)
+
+    modalOverlay1.style.display ='none'
+    loadAndRender()
+
+
+  }
+
 }
 
 const myMembersJob = ['Salon owner & Beautician', 'Beautician & Social Media', 'Beautician', 'Beautician & Social Media', 'Nail Technician', 'Acrylic & BIAB Nails']
@@ -256,6 +314,7 @@ btnPrev.addEventListener('click', () => {
 });
 btnNext.addEventListener('click', () => {
   weekStart.setDate(weekStart.getDate() + 7);
+  
   renderWeek(weekStart);
 });
 
@@ -286,10 +345,31 @@ async function getSchedule(usr_id) {
 }
 
 
+// Devuelve el array de schedules
+async function getSchedule_with_user(myid, usr_id) {
+  const res = await fetch('https://prestige-beauty-backend.vercel.app/getSchedule_with_user', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: myid, user_id: usr_id })
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  console.log('Schedule cargado de usuario bv :', data);
+  return data;    // <— Devuelve el array
+}
+
+
 // 1) Función que carga y luego pinta
 async function loadAndRender() {
   try {
     scheduleData = await getSchedule(myProfesionalPicked_index);
+    const query = window.location.search;
+    const params = new URLSearchParams(query);
+    if (params.has('myId')) {
+      USER_ACTIVE = true
+      scheduleDataUser = await getSchedule_with_user(myProfesionalPicked_index, params.get('myId'))
+    }
+
   } catch (err) {
     console.error('Error cargando schedule:', err);
     scheduleData = [];

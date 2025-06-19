@@ -669,11 +669,15 @@ h1{
 }
 
 .scheduled{
-    background-color: #33f8a6;
+    background-color: #91a78a;
 
 }
 
-.BS{
+.PND{
+  background-color: black;
+}
+
+.BS, .PND{
 background-color:  black;
 color:white;
 }
@@ -759,12 +763,12 @@ color:white;
  display:  none;
 }
 
-.Rechazada{
-
+.Rechazada, .REJ{
+background-color: #a57d7a;
 }
 
-.Aceptada{
-  
+.Aceptada, .ACC{
+  background-color: #91a78a;
 }
 
 
