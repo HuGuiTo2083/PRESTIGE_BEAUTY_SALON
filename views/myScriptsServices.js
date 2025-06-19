@@ -174,7 +174,7 @@ function renderWeek(startDate) {
               cell.style.setProperty('cursor', 'pointer')
               cell.style.gridRow = getRowDay(d)
               cell.style.gridColumn = d + 1
-              cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+              cell.addEventListener('click', () => openModal(dateStr, myHours[hourIdx], myProfesionalPicked_index))
               cell.innerHTML = `${myHours[hourIdx]} <br> ${match2.service}`;
               cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
               cell.dataset.hour = myHours[hourIdx];
@@ -187,7 +187,7 @@ function renderWeek(startDate) {
             cell.style.setProperty('cursor', 'pointer')
             cell.style.gridRow = getRowDay(d)
             cell.style.gridColumn = d + 1
-            cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+            cell.addEventListener('click', () => openModal(dateStr, myHours[hourIdx], myProfesionalPicked_index))
             cell.textContent = myHours[hourIdx];
             cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             cell.dataset.hour = myHours[hourIdx];
@@ -202,7 +202,7 @@ function renderWeek(startDate) {
             cell.style.setProperty('cursor', 'pointer')
             cell.style.gridRow = getRowDay(d)
             cell.style.gridColumn = d + 1
-            cell.addEventListener('click', () => openModal(dateStr, hourStr, myProfesionalPicked_index))
+            cell.addEventListener('click', () => openModal(dateStr, myHours[hourIdx], myProfesionalPicked_index))
             cell.textContent = myHours[hourIdx];
             cell.dataset.date = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             cell.dataset.hour = myHours[hourIdx];
