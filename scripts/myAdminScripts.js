@@ -63,7 +63,7 @@ async function myRequests() {
      <!-- ----PARTE DONDE ESTÁ LA HORA--- -->
       <div class="w100 h100  dFlex jcCenter aiCenter">
         <div class="w80 h70 br5px bcThird dFlex aiCenter jcCenter ff2 fw500 cFirst fs15 divHour bsBorderBox p10">
-        ${day}/${nameMonth} &nbsp; 9:00</div>
+        ${day}/${nameMonth} &nbsp; ${hour}</div>
       </div>
       <!-- -----------PARTE DONDE DICE QUE SERVICIO SOLICITÓ LA PERSONA------- -->
 
