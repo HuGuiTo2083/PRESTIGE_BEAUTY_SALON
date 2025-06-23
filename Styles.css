@@ -772,6 +772,26 @@ background-color: #a57d7a;
 }
 
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--second )
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--first);
+  border-radius: 3px;
+}
+
+.selected-service{
+  background-color: color-mix(in srgb, var(--first) 70%, black 30%);
+}
+
+
 
 
 @media screen and (min-width: 1024px) and (max-height: 1000px) {
