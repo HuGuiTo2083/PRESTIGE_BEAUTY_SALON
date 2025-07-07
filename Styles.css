@@ -49,6 +49,10 @@
     background-color: var(--second);
 }
 
+.bcSecondLight{
+  background-color: color-mix(in srgb, var(--second) 50%, white 50%);
+}
+
 .hoverSecond:hover{
   background-color: var(--second-dark);
 }
@@ -86,6 +90,11 @@
 .cFourth{
     color: var(--fourth);
 }
+
+.cFifth{
+  color: var(--fifth);
+}
+
 
 
 
@@ -259,7 +268,11 @@ background-color: rgb(37, 36, 36);
 }
 
 .fs8{
-    font-size: clamp(25px, 4vw, 30px)
+  font-size: clamp(25px, 4vw, 30px)
+}
+
+.fs13{
+    font-size: clamp(15px, 2vw, 2px)
 }
 
 .fs3{

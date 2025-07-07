@@ -1,11 +1,14 @@
 const myServicesCards = document.querySelectorAll('.service-card')
 let MY_SERVICE_SELECTED = -1
+let MY_SUBSERVICE_TYPE_SELECTED = -1
+let MY_SUBSERVICE_SELECTED = -1
 
 const myServicesArray = ["Eyelash Extension", "Eyebrows", "Facials", "Make Up", "Tanning",
     "Spray Tans", "Nails", "Hair Removal"]
 
 const mySpecificServices = {
     "Eyelash Extension": ["LVL Lash Lift", "Semi-Permanent Eyelash Extensions"],
+
     "Eyebrows": ["Eyebrow Threading", "Brow Lamination and Tint", "HD Brows",
         "Brow Shape, Tint and Lash Tint", "Lash or Brow Tint", "Shape and Tint", "Eyebrow Shaping"],
     "Facials": ["Ear Candling", "Express Pick Me Up"],
@@ -22,6 +25,157 @@ const mySpecificServices = {
 
 }
 
+const myMinutes = {
+    "LVL Lash Lift": "15",
+    "Semi-Permanent Eyelash Extensions": "15 to 120",
+    "Eyebrow Threading": "15",
+    "Brow Lamination and Tint": "40",
+    "HD Brows": "30",
+    "Brow Shape, Tint and Lash Tint": "30",
+    "Lash or Brow Tint": "15 to 20",
+    "Shape and Tint": "15",
+    "Eyebrow Shaping": "15",
+    "Ear Candling": "30",
+    "Express Pick Me Up": "35 to 60",
+    "Ear Piercing": "15",
+    "Makeup": "60",
+    "Sunbed Tanning": "5 to 20",
+    "Spray Tan": "15",
+    "Nail Art (french,chrome etc)": "20",
+    "Callus Peel": "30",
+    "Nail Repair": "15",
+    "Shellac Gel Polish- Toes": "30 to 35",
+    "BIAB on Natural Nails": "75 to 85",
+    "Acrylic Full set with Shellac colour": "75",
+    "Luxury Pedicure": "45 to 75",
+    "Infills-BIAB": "60",
+    "Shellac Gel Polish- Hands": "30 to 35",
+    "Soak Off Nails with tips": "30",
+    "Facial Threading": "10 to 30",
+    "Gents Waxing": "20 to 65",
+    "Ladies Waxing-Face": "10 to 15",
+    "Ladies Waxing- Arm and Underarm": "10 to 30",
+    "Ladies Waxing- Leg": "20 to 30",
+    "Ladies Waxing- Bikini": "15 to 20",
+    "Ladies Waxing- Brazilian": "20",
+    "Ladies Waxing- Hollywood": "20"
+}
+
+
+const myTypesServices = {
+    "LVL Lash Lift": ["LVL Lash Lift"],
+    "Semi-Permanent Eyelash Extensions": ["Eyelashes-Strip Lashes", "Semi-Permanent Eyelash Extensions-Infills", "Eyelash Extensions-Classic", "Eyelash Extensions-Hybrid", "Eyelash Extensions-Russian Volume", "Eyelash Extensions-Removal", "Eyelashes-Party Lashes"],
+    "Eyebrow Threading": ["Eyebrow Threading", "Eyebrow Thread and Tint"],
+    "Brow Lamination and Tint": ["Brow Lamination and Tint"],
+    "HD Brows": ["HD Brows"],
+    "Brow Shape, Tint and Lash Tint": ["Brow Shape, Tint and Lash Tint"],
+    "Lash or Brow Tint": ["Eyelash Tint", "Eyebrow Tint"],
+    "Shape and Tint": ["Shape and Tint"],
+    "Eyebrow Shaping": ["Eyebrow Shaping"],
+    "Ear Candling": ["Ear Candling"],
+    "Express Pick Me Up": ["Express Pick Me Up", "Deep Luxury Cleanse", "Crystal Clear Microdermabrasion", "Dermaplaning"],
+    "Ear Piercing": ["Ear Piercing"],
+    "Makeup": ["Makeup"],
+    "Sunbed Tanning": ["6 minutes", "3 minutes", "9 minutes", "12 minutes", "1 week Course", "1 month Course"],
+    "Spray Tan": ["Spray Tan"],
+    "Nail Art (french,chrome etc)": ["Nail Art (french,chrome etc)"],
+    "Callus Peel": ["Callus Peel"],
+    "Nail Repair": ["Nail Repair"],
+    "Shellac Gel Polish- Toes": ["Shellac Gel Polish- Toes", "Shellac Gel Polish Remove and Renew-Toes"],
+    "BIAB on Natural Nails": ["BIAB on Natural Nails", "BIAB Full set with Tips"],
+    "Acrylic Full set with Shellac colour": ["Acrylic Full set with Shellac colour", "Acrylic Full set Ombre"],
+    "Luxury Pedicure": ["Luxury Pedicure", "Luxury Pedicure with Shellac polish"],
+    "Infills-BIAB": ["Infills-BIAB", "Infills-Acrylic"],
+    "Shellac Gel Polish- Hands": ["Shellac Gel Polish- Hands", "Shellac Gel polish Remove and Renew-Hands"],
+    "Soak Off Nails with tips": ["Soak Off Nails with tips", "Soak Off nails without tips"],
+    "Facial Threading": ["Forehead", "Chin", "Upper Lip", "Lip and Chin", "Full Face"],
+    "Gents Waxing": ["Eyebrows", "Back", "Chest", "Chest and Back", "Intimate Waxing"],
+    "Ladies Waxing-Face": ["Chin", "Upper Lip", "Eyebrows", "Upper lip and Chin"],
+    "Ladies Waxing- Arm and Underarm": ["Strip Wax", "Hot wax", "Half Arm", "Full Arm"],
+    "Ladies Waxing- Leg": ["Half leg", "Full leg"],
+    "Ladies Waxing- Bikini": ["Strip Wax", "Hot wax"],
+    "Ladies Waxing- Brazilian": ["Strip Wax", "Hot wax"],
+    "Ladies Waxing- Hollywood": ["Strip Wax", "Hot wax"]
+}
+
+const newServicesJson = {
+    "LVL Lash Lift": ["60", "GBP 40"],
+    "Eyelashes-Strip Lashes": ["15", "GBP 13"],
+    "Semi-Permanent Eyelash Extensions-Infills": ["60", "GBP 35"],
+    "Eyelash Extensions-Classic": ["90", "GBP 45"],
+    "Eyelash Extensions-Hybrid": ["90", "GBP 50"],
+    "Eyelash Extensions-Russian Volume": ["120", "GBP 60"],
+    "Eyelash Extensions-Removal": ["20", "GBP 15"],
+    "Eyelashes-Party Lashes": ["30", "GBP 25"],
+    "Eyebrow Threading": ["15", "GBP 13"],
+    "Eyebrow Thread and Tint": ["15", "GBP 18"],
+    "Brow Lamination and Tint": ["40", "GBP 30"],
+    "HD Brows": ["30", "GBP 28"],
+    "Brow Shape, Tint and Lash Tint": ["30", "GBP 30"],
+    "Eyelash Tint": ["20", "GBP 14"],
+    "Eyebrow Tint": ["15", "GBP 10"],
+    "Shape and Tint": ["15", "GBP 18"],
+    "Eyebrow Shaping": ["15", "GBP 13"],
+    "Ear Candling": ["30", "GBP 25"],
+    "Express Pick Me Up": ["35", "GBP 30"],
+    "Deep Luxury Cleanse": ["60", "GBP 40"],
+    "Crystal Clear Microdermabrasion": ["60", "GBP 55"],
+    "Dermaplaning": ["50", "GBP 45"],
+    "Ear Piercing": ["15", "GBP 25"],
+    "Makeup": ["60", "GBP 45"],
+    "6 minutes": ["10", "GBP 4"],
+    "3 minutes": ["5", "GBP 2"],
+    "9 minutes": ["15", "GBP 6"],
+    "12 minutes": ["20", "GBP 8"],
+    "1 week Course": ["20", "GBP 15"],
+    "1 month Course": ["20", "GBP 50"],
+    "Spray Tan": ["15", "GBP 25"],
+    "Nail Art (french,chrome etc)": ["20", "GBP 5"],
+    "Callus Peel": ["30", "GBP 30"],
+    "Nail Repair": ["15", "GBP 5"],
+    "Shellac Gel Polish- Toes": ["30", "GBP 28"],
+    "Shellac Gel Polish Remove and Renew-Toes": ["35", "GBP 30"],
+    "BIAB on Natural Nails": ["75", "GBP 33"],
+    "BIAB Full set with Tips": ["85", "GBP 39"],
+    "Acrylic Full set with Shellac colour": ["75", "GBP 39"],
+    "Acrylic Full set Ombre": ["75", "GBP 42"],
+    "Luxury Pedicure": ["45", "GBP 35"],
+    "Luxury Pedicure with Shellac polish": ["75", "GBP 45"],
+    "Infills-BIAB": ["60", "GBP 33"],
+    "Infills-Acrylic": ["60", "GBP 33"],
+    "Shellac Gel Polish- Hands": ["30", "GBP 28"],
+    "Shellac Gel polish Remove and Renew-Hands": ["35", "GBP 30"],
+    "Soak Off Nails with tips": ["30", "GBP 20"],
+    "Soak Off nails without tips": ["30", "GBP 15"],
+    "Forehead": ["10", "GBP 9"],
+    "Chin": ["10", "GBP 9"],
+    "Upper Lip": ["10", "GBP 9"],
+    "Lip and Chin": ["15", "GBP 14"],
+    "Full Face": ["30", "GBP 17"],
+    "Eyebrows Gents Waxing": ["20", "GBP 13"],
+    "Eyebrows Ladies Waxing-Face": ["10", "GBP 13"],
+    "Back": ["20", "GBP 30"],
+    "Chest": ["20", "GBP 30"],
+    "Chest and Back": ["45", "GBP 40"],
+    "Intimate Waxing": ["65", "GBP 60"],
+    "Upper lip and Chin": ["15", "GBP 14"],
+    "Strip Wax Ladies Waxing- Arm and Underarm": ["10", "GBP 12"],
+    "Hot wax Ladies Waxing- Arm and Underarm": ["15", "GBP 14"],
+    "Strip Wax Ladies Waxing- Bikini": ["15", "GBP 25"],
+    "Hot wax Ladies Waxing- Bikini": ["20", "GBP 28"],
+    "Strip Wax Ladies Waxing- Brazilian": ["20", "GBP 30"],
+    "Hot wax Ladies Waxing- Brazilian": ["20", "GBP 36"],
+    "Strip Wax Ladies Waxing- Hollywood": ["20", "GBP 30"],
+    "Hot wax Ladies Waxing- Hollywood": ["20", "GBP 36"],
+    "Half Arm": ["15", "GBP 22"],
+    "Full Arm": ["30", "GBP 32"],
+    "Half leg": ["20", "GBP 22"],
+    "Full leg": ["30", "GBP 32"]
+}
+
+const myException = ["Strip Wax", "Hot wax", "Eyebrows"]
+
+
 
 myServicesCards.forEach(el => {
     el.addEventListener('click', () => {
@@ -30,7 +184,7 @@ myServicesCards.forEach(el => {
         el.classList.add('selected-service')
         const serviceName = myServicesArray[MY_SERVICE_SELECTED]
         const mySpecificService = mySpecificServices[serviceName]
-        createOption(mySpecificService)
+        createOption(mySpecificService, MY_SERVICE_SELECTED)
         //console.log(serviceName)
         //console.log(mySpecificServices[serviceName])
         // mySpecificServices.serviceName.forEach((el2)=>{
@@ -42,6 +196,117 @@ myServicesCards.forEach(el => {
     })
 })
 
-function createOption(myServices){
-    console.log(myServices)
+const mySpecificsArtists = {
+    0: [0, 1, 2, 4, 5],
+    1: [0, 1, 2, 4, 5],
+    2: [0, 1, 2, 4, 5],
+    3: [0, 1, 2, 4, 5],
+    4: [0, 1, 2, 4, 5],
+    5: [0, 1, 2, 4, 5],
+
 }
+
+function createOption(myServices, myServiceIndex) {
+    const myContainer = document.getElementById('myContainerSpecificServices')
+    let myString = ''
+    myServices.forEach((el, index) => {
+
+        myString += `
+        <div class="cPointer hoverLight fShrink0 bcFirst w98 h70px br1 ff1 fs2 cSecond dFlex jcCenter aiCenter" 
+        onclick="openModalService('${el}', '${index}')" data-subservice="${index}">
+                ${el} - &nbsp; <span class="cWhite fs4 ">${myMinutes[el]} min</span>
+        </div>`
+
+        console.log(el)
+    })
+    myContainer.innerHTML = myString
+    //console.log(myServices)
+}
+
+function openModalService(SubService, index) {
+    const containerSubservice = document.getElementById('containerSubservice')
+    const menuTypes = document.getElementById('menuTypes')
+    let myHTML = ''
+    console.log("el index del subservice: " + index)
+    console.log(myTypesServices[SubService])
+
+    myTypesServices[SubService].forEach((el) => {
+        let myService_Detail = ''
+        if (myException.includes(el)) {
+            let myString = `${el} ${SubService}`
+            console.log('El string es: ' + myString)
+            myService_Detail = newServicesJson[myString]
+        }
+        else {
+            myService_Detail = newServicesJson[el]
+        }
+        myHTML += `
+        <div class="fShrink0 w200px h90 br10px bcFirst dGrid gtc_1 gtr_1_1_0-5 bsBorderBox pl5 pr5 cPointer hoverLight type-service">
+
+                    <div class="w100 h100 dFlex aiCenter jcCenter fs10 ff2 fw600 cWhite">
+                        ${el}
+                    </div>
+
+                    <div class="w100 h100 dFlex aiEnd bsBorderBox pb10 jcCenter fs11 ff2 fw700 cWhite">
+                        ${myService_Detail[0]} min
+                    </div>
+
+                    <div class="w100  h100 dFlex aiCenter jcCenter fs11 ff2 fw300 cWhite bsBorderBox pb10">
+                    ${myService_Detail[1]}
+                    </div>
+
+                </div>`
+    })
+
+    let myHTML2= `
+            <div class="bcFourth bNone wAuto h85 dFlex aiCenter jcCenter ff2 cWhite fw600 fs10 pl10 pr10 br10px">
+            ${SubService}</div>
+`
+    containerSubservice.innerHTML = myHTML2
+    menuTypes.innerHTML = myHTML
+    myModalOverview.style.display = 'flex'
+    Selected_Logic()
+}
+
+const myMembersJob = ['Salon owner & Beautician', 'Beautician & Social Media', 'Beautician', 'Beautician & Social Media', 'Nail Technician', 'Acrylic & BIAB Nails']
+const myMembersNames = ['Teresa', 'Lucy-Rose', 'Carly', 'Hollie', 'Marni', 'Amy']
+const myMembersImgs = ['team_teresa.jpg', 'team_lucy-rose.jpg', 'team_carly.jpg', 'team_holly.jpg', 'team_marni.jpg', 'team_amy.jpg']
+
+
+
+
+function Selected_Logic() {
+    const myTypes = document.querySelectorAll('.type-service')
+
+    myTypes.forEach(el => {
+        el.addEventListener('click', () => {
+            // MY_SUBSERVICE_SELECTED = el.getAttribute('data-subservice')
+            //console.log(MY_SUBSERVICE_SELECTED )
+            el.classList.add('selected-service')
+
+            myTypes.forEach(e => {
+                if (e != el) { e.classList.remove('selected-service') }
+            })
+        })
+    })
+
+}
+
+
+// --------------------LOGICA PARA CERRAR EL MODAL-------------
+
+const myModalOverview = document.getElementById('myModalArtist')
+const myMainModal = document.getElementById('myMainModal')
+const myBtnCloseModalS = document.getElementById('myBtnCloseModalS')
+myBtnCloseModalS.addEventListener('click', () => {
+    myModalOverview.style.display = 'none'
+}
+)
+
+document.body.addEventListener('click', (el) => {
+    //console.log('hola')
+    if (el.target !== myMainModal && getComputedStyle(myModalOverview).display === "none") {
+        myModalOverview.style.display = 'none'
+
+    }
+})
