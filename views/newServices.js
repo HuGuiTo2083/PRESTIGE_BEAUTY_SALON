@@ -196,15 +196,81 @@ myServicesCards.forEach(el => {
     })
 })
 
-const mySpecificsArtists = {
-    0: [0, 1, 2, 4, 5],
-    1: [0, 1, 2, 4, 5],
-    2: [0, 1, 2, 4, 5],
-    3: [0, 1, 2, 4, 5],
-    4: [0, 1, 2, 4, 5],
-    5: [0, 1, 2, 4, 5],
-
+const myArtistJSON = {
+    "LVL Lash Lift": [1, 0, 2],
+    "Eyelashes-Strip Lashes": [5, 2],
+    "Semi-Permanent Eyelash Extensions-Infills": [5, 2],
+    "Eyelash Extensions-Classic": [5, 2],
+    "Eyelash Extensions-Hybrid": [5, 2],
+    "Eyelash Extensions-Russian Volume": [5, 2],
+    "Eyelash Extensions-Removal": [5, 2],
+    "Eyelashes-Party Lashes": [5, 2],
+    "Eyebrow Threading": [2],
+    "Eyebrow Thread and Tint": [2],
+    "Brow Lamination and Tint": [1, 0],
+    "HD Brows": [1, 0],
+    "Brow Shape, Tint and Lash Tint": [1, 0, 5, 2],
+    "Eyelash Tint": [1, 0, 5, 2],
+    "Eyebrow Tint": [1, 0, 5, 2],
+    "Shape and Tint": [1, 0, 5, 2],
+    "Eyebrow Shaping": [1, 0, 5, 2],
+    "Ear Candling": [0, 2],
+    "Express Pick Me Up": [0, 2],
+    "Deep Luxury Cleanse": [0, 2],
+    "Crystal Clear Microdermabrasion": [0, 2],
+    "Dermaplaning": [0, 2],
+    "Ear Piercing": [0],
+    "Makeup": [5],
+    "6 minutes": [0, 5, 2, 4],
+    "3 minutes": [0, 5, 2, 4],
+    "9 minutes": [0, 5, 2, 4],
+    "12 minutes": [0, 5, 2, 4],
+    "1 week Course": [0, 5, 2, 4],
+    "1 month Course": [0, 5, 2, 4],
+    "Spray Tan": [1, 0, 2],
+    "Nail Art (french,chrome etc)": [1, 5, 2, 4],
+    "Callus Peel": [1, 5, 2, 4],
+    "Nail Repair": [1, 5, 2, 4],
+    "Shellac Gel Polish- Toes": [1, 0, 5, 2, 4],
+    "Shellac Gel Polish Remove and Renew-Toes": [1, 0, 5, 2, 4],
+    "BIAB on Natural Nails": [1, 5, 2, 4],
+    "BIAB Full set with Tips": [1, 5, 2, 4],
+    "Acrylic Full set with Shellac colour": [1, 5, 2, 4],
+    "Acrylic Full set Ombre": [1, 5, 2, 4],
+    "Luxury Pedicure": [1, 0, 5, 2, 4],
+    "Luxury Pedicure with Shellac polish": [1, 0, 5, 2, 4],
+    "Infills-BIAB": [1, 5, 2, 4],
+    "Infills-Acrylic": [1, 5, 2, 4],
+    "Shellac Gel Polish- Hands": [1, 0, 5, 2, 4],
+    "Shellac Gel polish Remove and Renew-Hands": [1, 0, 5, 2, 4],
+    "Soak Off Nails with tips": [5, 2, 4],
+    "Soak Off nails without tips": [5, 2, 4],
+    "Forehead": [0, 2],
+    "Chin": [0, 2],
+    "Upper Lip": [0, 2],
+    "Lip and Chin": [0, 2],
+    "Full Face": [0, 2],
+    "Eyebrows Gents Waxing": [0, 2],
+    "Eyebrows Ladies Waxing-Face": [1, 0, 5, 2],
+    "Back": [0, 2],
+    "Chest": [0, 2],
+    "Chest and Back": [0, 2],
+    "Intimate Waxing": [0, 2],
+    "Upper lip and Chin": [1, 0, 5, 2],
+    "Strip Wax Ladies Waxing- Arm and Underarm": [1, 0, 5, 2],
+    "Hot wax Ladies Waxing- Arm and Underarm": [1, 0, 5, 2],
+    "Strip Wax Ladies Waxing- Bikini": [0, 5, 2],
+    "Hot wax Ladies Waxing- Bikini": [0, 5, 2],
+    "Strip Wax Ladies Waxing- Brazilian": [0, 2],
+    "Hot wax Ladies Waxing- Brazilian": [0, 2],
+    "Strip Wax Ladies Waxing- Hollywood": [0, 2],
+    "Hot wax Ladies Waxing- Hollywood": [0, 2],
+    "Half Arm": [1, 0, 5, 2],
+    "Full Arm": [1, 0, 5, 2],
+    "Half leg": [0, 5, 2],
+    "Full leg": [0, 5, 2]
 }
+
 
 function createOption(myServices, myServiceIndex) {
     const myContainer = document.getElementById('myContainerSpecificServices')
@@ -224,6 +290,8 @@ function createOption(myServices, myServiceIndex) {
 }
 
 function openModalService(SubService, index) {
+    const ContainerSpecialists = document.getElementById('ContainerSpecialists')
+    ContainerSpecialists.innerHTML = ''
     const containerSubservice = document.getElementById('containerSubservice')
     const menuTypes = document.getElementById('menuTypes')
     let myHTML = ''
@@ -232,16 +300,21 @@ function openModalService(SubService, index) {
 
     myTypesServices[SubService].forEach((el) => {
         let myService_Detail = ''
+        let myString
         if (myException.includes(el)) {
-            let myString = `${el} ${SubService}`
-            console.log('El string es: ' + myString)
+            myString = `${el} ${SubService}`
+           
             myService_Detail = newServicesJson[myString]
         }
         else {
+            myString = el
             myService_Detail = newServicesJson[el]
         }
+
+        console.log('El string es: ' + myString)
         myHTML += `
-        <div class="fShrink0 w200px h90 br10px bcFirst dGrid gtc_1 gtr_1_1_0-5 bsBorderBox pl5 pr5 cPointer hoverLight type-service">
+        <div class="fShrink0 w200px h90 br10px bcFirst dGrid gtc_1 gtr_1_1_0-5 bsBorderBox pl5 pr5 cPointer hoverLight type-service"
+         onclick="generateImagesArtists('${myString}')">
 
                     <div class="w100 h100 dFlex aiCenter jcCenter fs10 ff2 fw600 cWhite">
                         ${el}
@@ -258,7 +331,7 @@ function openModalService(SubService, index) {
                 </div>`
     })
 
-    let myHTML2= `
+    let myHTML2 = `
             <div class="bcFourth bNone wAuto h85 dFlex aiCenter jcCenter ff2 cWhite fw600 fs10 pl10 pr10 br10px">
             ${SubService}</div>
 `
@@ -272,7 +345,23 @@ const myMembersJob = ['Salon owner & Beautician', 'Beautician & Social Media', '
 const myMembersNames = ['Teresa', 'Lucy-Rose', 'Carly', 'Hollie', 'Marni', 'Amy']
 const myMembersImgs = ['team_teresa.jpg', 'team_lucy-rose.jpg', 'team_carly.jpg', 'team_holly.jpg', 'team_marni.jpg', 'team_amy.jpg']
 
+function generateImagesArtists(subservice_type) {
+    let arrayImages = myArtistJSON[subservice_type]
+   console.log("el array recibido es: " + arrayImages)
+    let myHTML = ''
+    const ContainerSpecialists = document.getElementById('ContainerSpecialists')
+    arrayImages.forEach((el) => {
+        myHTML += `
+    <div class="fShrink0 wAuto hAuto dFlex fdColumn gap10 aiCenter jcCenter ">
+         <img src="../images/${myMembersImgs[el]}" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+         <label class="ff1 cBlack fs15">${myMembersNames[el]}</label>
+         <label class="ff2 cFirst fs11">${myMembersJob[el]}</label>
+     </div>`
+    })
 
+    ContainerSpecialists.innerHTML = myHTML
+
+}
 
 
 function Selected_Logic() {

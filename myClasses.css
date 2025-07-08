@@ -485,6 +485,10 @@ grid-template-rows: 8fr auto;
   grid-template-rows: 1fr 0.5fr 2.5fr;
 }
 
+.gtr_0-5_1_1{
+  grid-template-rows:  0.5fr 1fr 1fr;
+}
+
 .gtr_0-5_1_1-5 {
   grid-template-rows: 0.5fr 1fr 1.5fr;
 }
