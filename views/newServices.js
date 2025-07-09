@@ -288,7 +288,7 @@ function createOption(myServices, myServiceIndex) {
                 ${el} - &nbsp; <span class="cWhite fs4 ">${myMinutes[el]} min</span>
         </div>`
 
-        console.log(el)
+        //console.log(el)
     })
     myContainer.innerHTML = myString
     //console.log(myServices)
@@ -296,14 +296,14 @@ function createOption(myServices, myServiceIndex) {
 
 function openModalService(SubService, index) {
 
-    console.log("el ancho de esta ventana es: " + window.innerWidth + ", y e alto es: " + window.innerHeight)
+    //console.log("el ancho de esta ventana es: " + window.innerWidth + ", y e alto es: " + window.innerHeight)
     const ContainerSpecialists = document.getElementById('ContainerSpecialists')
     ContainerSpecialists.innerHTML = ''
     const containerSubservice = document.getElementById('containerSubservice')
     const menuTypes = document.getElementById('menuTypes')
     let myHTML = ''
-    console.log("el index del subservice: " + index)
-    console.log(myTypesServices[SubService])
+    //console.log("el index del subservice: " + index)
+    //console.log(myTypesServices[SubService])
 
     myTypesServices[SubService].forEach((el) => {
         let myService_Detail = ''
@@ -356,7 +356,7 @@ const myMembersImgs = ['team_teresa.jpg', 'team_lucy-rose.jpg', 'team_carly.jpg'
 
 function generateImagesArtists(subservice_type) {
     let arrayImages = myArtistJSON[subservice_type]
-   console.log("el array recibido es: " + arrayImages)
+   //console.log("el array recibido es: " + arrayImages)
     let myHTML = ''
     const ContainerSpecialists = document.getElementById('ContainerSpecialists')
     arrayImages.forEach((el, index) => {
@@ -401,9 +401,9 @@ myBtnCloseModalS.addEventListener('click', () => {
 }
 )
 
-document.body.addEventListener('click', (el) => {
+myModalOverview.addEventListener('click', (el) => {
     //console.log(myMainModal)
-    if (el.target !== myMainModal && getComputedStyle(myModalOverview).display === "none") {
+    if (el.target !== myMainModal ) {
         myModalOverview.style.display = 'none'
         //console.log('hola1')
     }

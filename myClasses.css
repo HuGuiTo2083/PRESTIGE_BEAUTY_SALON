@@ -88,6 +88,10 @@
 
 }
 
+.gtc_r7_1{
+ grid-template-columns: repeat(7, 1fr);
+}
+
 .gtc_1{
   grid-template-columns: 1fr;
 }
