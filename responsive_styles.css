@@ -101,6 +101,18 @@
         justify-content: flex-start !important;
     }
 
+    .Responsive-size{
+        height: 95vh !important;
+    }
+
 }
 
-@media only screen and (min-width: 1200px) {}
+
+/* for a largest screens */
+/* abarca las pantallas y monitores grandes */
+@media only screen and (min-width: 1500px) {
+    .imgRespo{
+        width: clamp(50px, 10vw, 100px) !important;
+        height: clamp(50px, 10vw, 100px) !important;
+    }
+}

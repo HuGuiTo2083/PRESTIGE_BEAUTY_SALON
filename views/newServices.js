@@ -295,6 +295,8 @@ function createOption(myServices, myServiceIndex) {
 }
 
 function openModalService(SubService, index) {
+
+    console.log("el ancho de esta ventana es: " + window.innerWidth + ", y e alto es: " + window.innerHeight)
     const ContainerSpecialists = document.getElementById('ContainerSpecialists')
     ContainerSpecialists.innerHTML = ''
     const containerSubservice = document.getElementById('containerSubservice')
@@ -316,20 +318,22 @@ function openModalService(SubService, index) {
             myService_Detail = newServicesJson[el]
         }
 
-        console.log('El string es: ' + myString)
+        // console.log('El string es: ' + myString + " y su tamaño es: " + myString.length)
+        // console.log('El tamaño de la pantalla es de')
+       
         myHTML += `
         <div class="fShrink0 w200px h90 br10px bcFirst dGrid gtc_1 gtr_1_1_0-5 bsBorderBox pl5 pr5 cPointer hoverLight type-service"
          onclick="generateImagesArtists('${myString}')">
 
-                    <div class="w100 h100 dFlex aiCenter jcCenter fs10 ff2 fw600 cWhite">
+                    <div class="w100 h100 dFlex aiCenter jcCenter fs12 ff2 fw400 cWhite">
                         ${el}
                     </div>
 
-                    <div class="w100 h100 dFlex aiEnd bsBorderBox pb10 jcCenter fs11 ff2 fw700 cWhite">
+                    <div class="w100 h100 dFlex aiEnd bsBorderBox pb10 jcCenter fs19 ff2 fw700 cWhite">
                         ${myService_Detail[0]} min
                     </div>
 
-                    <div class="w100  h100 dFlex aiCenter jcCenter fs11 ff2 fw300 cWhite bsBorderBox pb10">
+                    <div class="w100  h100 dFlex aiCenter jcCenter fs19 ff2 fw300 cWhite bsBorderBox pb10">
                     ${myService_Detail[1]}
                     </div>
 
@@ -337,7 +341,7 @@ function openModalService(SubService, index) {
     })
 
     let myHTML2 = `
-            <div class="bcFourth bNone wAuto h85 dFlex aiCenter jcCenter ff2 cWhite fw600 fs10 pl10 pr10 br10px">
+            <div class="bcFourth bNone wAuto h85 dFlex aiCenter jcCenter ff2 cWhite fw600 fs17 pl10 pr10 br10px">
             ${SubService}</div>
 `
     containerSubservice.innerHTML = myHTML2
@@ -357,10 +361,10 @@ function generateImagesArtists(subservice_type) {
     const ContainerSpecialists = document.getElementById('ContainerSpecialists')
     arrayImages.forEach((el, index) => {
         myHTML += `
-    <div class="fShrink0 wAuto h100 dFlex fdColumn gap10 aiCenter jcStart">
-         <img src="../images/${myMembersImgs[el]}" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer" id="Img_Specialist_${index}">
-         <label class="ff1 cBlack fs15">${myMembersNames[el]}</label>
-         <label class="ff2 cFirst fs11 dwImg_Specialist_${index}">${myMembersJob[el]}</label>
+    <div class="fShrink0 wAuto h100 dFlex fdColumn gap5 aiCenter jcStart">
+         <img src="../images/${myMembersImgs[el]}" class="myImg13 br50per b5_solid_first  changeGlowEffect cPointer imgRespo" id="Img_Specialist_${index}">
+         <label class="ff1 cBlack fs19">${myMembersNames[el]}</label>
+         <label class="ff2 cFirst fs20 dwImg_Specialist_${index}">${myMembersJob[el]}</label>
      </div>`
     })
 
@@ -398,9 +402,9 @@ myBtnCloseModalS.addEventListener('click', () => {
 )
 
 document.body.addEventListener('click', (el) => {
-    //console.log('hola')
+    //console.log(myMainModal)
     if (el.target !== myMainModal && getComputedStyle(myModalOverview).display === "none") {
         myModalOverview.style.display = 'none'
-
+        //console.log('hola1')
     }
 })
