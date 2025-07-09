@@ -275,10 +275,15 @@ const myArtistJSON = {
 function createOption(myServices, myServiceIndex) {
     const myContainer = document.getElementById('myContainerSpecificServices')
     let myString = ''
-    myServices.forEach((el, index) => {
 
+    myServices.forEach((el, index) => {
+        let myFontSize = 'fs2'
+        if( el.length > 30 && window.innerWidth<=600){
+                myFontSize = 'fs17'
+        }
+        //console.log("lenght del subservice: " + el + " es: " + el.length)
         myString += `
-        <div class="cPointer hoverLight fShrink0 bcFirst w98 h70px br1 ff1 fs2 cSecond dFlex jcCenter aiCenter" 
+        <div class="cPointer hoverLight fShrink0 bcFirst w98 h70px br1 ff1 ${myFontSize} cSecond dFlex jcCenter aiCenter" 
         onclick="openModalService('${el}', '${index}')" data-subservice="${index}">
                 ${el} - &nbsp; <span class="cWhite fs4 ">${myMinutes[el]} min</span>
         </div>`
@@ -350,17 +355,17 @@ function generateImagesArtists(subservice_type) {
    console.log("el array recibido es: " + arrayImages)
     let myHTML = ''
     const ContainerSpecialists = document.getElementById('ContainerSpecialists')
-    arrayImages.forEach((el) => {
+    arrayImages.forEach((el, index) => {
         myHTML += `
-    <div class="fShrink0 wAuto hAuto dFlex fdColumn gap10 aiCenter jcCenter ">
-         <img src="../images/${myMembersImgs[el]}" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+    <div class="fShrink0 wAuto h100 dFlex fdColumn gap10 aiCenter jcStart">
+         <img src="../images/${myMembersImgs[el]}" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer" id="Img_Specialist_${index}">
          <label class="ff1 cBlack fs15">${myMembersNames[el]}</label>
-         <label class="ff2 cFirst fs11">${myMembersJob[el]}</label>
+         <label class="ff2 cFirst fs11 dwImg_Specialist_${index}">${myMembersJob[el]}</label>
      </div>`
     })
 
     ContainerSpecialists.innerHTML = myHTML
-
+    dynamicWidth()
 }
 
 

@@ -2277,6 +2277,11 @@ font-size: clamp(8px, 1.5vw, 15px);
 font-size: clamp(10px, 3vw, 15px);
 }
 
+.fs17{
+  font-size: clamp(10px, 3.3vw, 15px);
+
+}
+
 .fs2{
 font-size: clamp(10px, 4vw, 30px)
 }

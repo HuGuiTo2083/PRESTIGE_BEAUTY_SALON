@@ -1,4 +1,5 @@
-/* Smartphones (portrait and landscape) */
+/* Smartphones (portrait and landscape), includes iPads, from iPad mini to iPad Pro*/
+/* abarca deispositivos moviles hasta tabletas grandes */
 @media only screen and (max-width: 1024px) {
 
     /* .login_box{
@@ -58,7 +59,14 @@
 
 }
 
-
+/* Smarthphones, includes iPads/Tablets of medium and small size, large size won't here */
+/* abarca dispositivos móviles hasta tabletas medianas, de tabletas grandes en adelante NO abarca */
+@media only screen and (max-width: 900px) {
+.respPaddings{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+}
 
 
 /* para ciertas computadoras */

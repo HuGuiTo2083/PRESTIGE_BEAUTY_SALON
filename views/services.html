@@ -19,7 +19,7 @@
         <label class="fs4 ff2 fw900 cFirst">Pick a Service</label>
     </div>
     <!-- -----PARTE DONDE SE SELECCIONA EL SERVICIO------- -->
-    <div class="w100 h100   dFlex aiCenter jcCenter jcCenter_resp oxAuto oyVisible  gap20 bsBorderBox pl10 pr10 pb10">
+    <div class="w100 h100   dFlex aiCenter jcCenter jcCenter_resp oxAuto oyVisible  gap20 bsBorderBox pl10 pr10 pb10 ">
 
         <div data-service="0"
             class="cPointer hoverLight fShrink0 h100px w150px br1 bcFirst dFlex jcCenter aiCenter ff2 fw400 cWhite fs12 service-card">
@@ -66,8 +66,8 @@
     </div>
     <!-- --------------PARTE PARA LOS SERVICIOS ESPECIFICOS--- -->
     <div class="w100 h100 dFlex jcCenter aiCenter oHidden">
-        <div class="bcSecond br1 w60 wResp95 h95 dFlex aiCenter bsBorderBox jcCenter pl50 pr50 pt20 pb20 mt10">
-            <div class=" w100 h60vh dFlex aiCenter jcStart oxHidden oyAuto fdColumn gap20"
+        <div class="bcSecond br1 w60   wResp95 h95 dFlex aiCenter bsBorderBox jcCenter pl50 pr50 pt20 pb20 mt10 respPaddings">
+            <div class=" w100 h60vh  dFlex aiCenter jcStart oxHidden oyAuto fdColumn gap20"
                 id="myContainerSpecificServices">
 
                 <!-- <div class="fShrink0 bcFirst w98 h70px br1 ff1 fs2 cSecond dFlex jcCenter aiCenter ">
@@ -86,7 +86,7 @@
 
 
         <!-- -----PARTE DEL MODAL---- -->
-        <div class="Responsive-size bcSecond br1 w60vw h80vh dGrid gtc_1 gtr_0-5_1_1_3_8 oHidden" id="myMainModal">
+        <div class="Responsive-size bcSecond br1 w60vw h90vh dGrid gtc_1 gtr_0-5_1_1_3_8 oHidden" id="myMainModal">
             <!-- BOTON PARA CERRAR -->
             <div class="w100 h100 dFlex aiCenter jcEnd bsBorderBox pr20 fs2 fw700 ff2 cFirst">
                 <span class="cPointer hoverBlack-f" id="myBtnCloseModalS">&times;</span>
@@ -123,19 +123,19 @@
 
             <!-- ------------------PARTE PARA SELECCIONAR LA ARTISTA Y EL HORARIO A ESCOGER------ -->
 
-            <div class="w100 h100  dGrid gtc_1 gtr_0-5_1_1">
+            <div class="w100 h100  dGrid gtc_1 gtr_0-5_1_1 ">
                 <!-- ----TITULO QUE ESPECIFICA QUE DEBES DE ESCOGER UN ARTISTA Y HORARIO -->
                 <div class="w100 h100 dFlex aiCenter jcCenter ff2 fw600 cFirst fs16 bsBorderBox pl10 pr10">
                     Select an Specialist and Date
                 </div>
                 <!-- ----SECCION DE ARTISTA--- -->
 
-                <div class="h100 w100  dFlex aiCenter bsBorderBox pl20 pr20 oxAuto oyHidden gap20 pb10" id="ContainerSpecialists">
+                <div class="h100 w100  dFlex aiCenter bsBorderBox pl20 pr20 oxAuto oyHidden gap20 pb10 " id="ContainerSpecialists">
                     
                     <!-- <div class="fShrink0 wAuto hAuto dFlex fdColumn gap10 aiCenter jcCenter ">
-                        <img src="../images/team_teresa.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer">
+                        <img src="../images/team_teresa.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer" id="Img_Specialist_1">
                         <label class="ff1 cBlack fs15">Teresa</label>
-                        <label class="ff2 cFirst fs11">Salon owner & Beautician</label>
+                        <label class="ff2 cFirst fs11 dwImg_Specialist_1">Salon owner & Beautician</label>
                     </div> -->
 
                     
@@ -146,7 +146,7 @@
 
                 <!-- -------SECCIÓN DEL HORARIO--- -->
 
-                <div class="h100 w100 ">
+                <div class="h100 w100">
 
                 </div>
                 <!-- ------------ -->
@@ -160,8 +160,8 @@
 
     <!-- --------------- -->
 
-    <script src="../myScripts.js"></script>
     <script src="newServices.js"></script>
+    <script src="../myScripts.js"></script>
 
     <!-- <script src="myScriptsServices.js"></script> -->
 

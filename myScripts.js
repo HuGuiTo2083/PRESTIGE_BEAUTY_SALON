@@ -10,7 +10,7 @@ function dynamicHeight() {
 
       const targetId = dwClass.slice(2); // Quita el "dw" para obtener el ID
       const targetElement = document.getElementById(targetId);
-      console.log(targetId)
+      //console.log(targetElement + " <- APlicando width dinamico")
       if (!targetElement) return;
 
       const targetHeight = targetElement.offsetHeight;
@@ -18,6 +18,31 @@ function dynamicHeight() {
       //console.log("aly2")
     } catch (error) {
       console.warn("Error ajustando altura para elemento:", el, error);
+      // Continúa con el siguiente sin detener el ciclo
+    }
+  });
+}
+
+function dynamicWidth() {
+  const elementos = document.querySelectorAll("[class*='dw']");
+ 
+  if (!elementos.length) return; // No hay elementos, salimos sin hacer nada
+
+  elementos.forEach(el => {
+    try {
+      const dwClass = Array.from(el.classList).find(cls => cls.startsWith("dw"));
+      if (!dwClass) return;
+
+      const targetId = dwClass.slice(2); // Quita el "dw" para obtener el ID
+      const targetElement = document.getElementById(targetId);
+      console.log(targetId)
+      if (!targetElement) return;
+
+      const targetWidth = targetElement.offsetWidth;
+      el.style.width = `calc(10px + ${targetWidth}px)`;
+      //console.log("aly2")
+    } catch (error) {
+      console.warn("Error ajustando ancho para elemento:", el, error);
       // Continúa con el siguiente sin detener el ciclo
     }
   });
@@ -212,6 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cust_anim2();
   carousel1();
   carousel2();
+  dynamicWidth();
 
   window.addEventListener("resize", () => {
     dynamicHeight();
@@ -221,5 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cust_anim2();
     carousel1();
     carousel2();
+    dynamicWidth();
   });
 });
