@@ -71,7 +71,8 @@ function renderCalendar(myDay, myDayMonth, myMonth, myYear) {
     for (i = 0; i < 7; i++) {
         myString+= `
         <div class="w100 h100 dFlex jcCenter aiCenter">
-          <div class=" cPointer hoverLight w100 h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter fdColumn">
+          <div class=" cPointer hoverLight w100 h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter fdColumn"
+          data-day="${myWeek[i][0]}" data-month="${myWeek[i][1]}" onclick="createHours_toDay(${myWeek[i][0]}, ${myWeek[i][1]})">
             ${myWeek[i][0]} / ${myWeek[i][1]} <br> <span class="fs12 fw300"> ${myWeekNames[i]} </span>
           </div>
         </div>`
@@ -146,6 +147,53 @@ renderCalendar(0, myNewDay, myNewMonth, myYear)
 //console.log("El día de la semana anterior del mes es " + myNewDay)
 
 
+})
+
+
+// -------------------LÓGICA PARA EL HORARIO----------
+
+const myHours = [
+    '10:00', '10:15', '10:30', '10:45',
+    '11:00', '11:15', '11:30', '11:45',
+    '12:00', '12:15', '12:30', '12:45',
+    '13:00', '13:15', '13:30', '13:45',
+    '14:00', '14:15', '14:30', '14:45',
+    '15:00', '15:15', '15:30', '15:45',
+    '16:00', '16:15', '16:30', '16:45',
+    '17:00', '17:15', '17:30', '17:45',
+    '18:00', '18:15', '18:30', '18:45',
+    '19:00', '19:15', '19:30', '19:45'
+  ];
+
+  const fullContainerCallendar = document.getElementById('fullContainerCallendar')
+  const fullCalendarHours = document.getElementById('fullCalendarHours')
+
+
+function createHours_toDay(day, month){
+    fullContainerCallendar.style.display='none'
+
+    fullCalendarHours.style.display = 'grid'
+
+    const myHoursContainer = document.getElementById('myHoursContainer')
+    // console.log(day)
+    // console.log(month)
+    let myString = ''
+    for(i=0; i<myHours.length;i++){
+        //console.log('jk')
+       myString += `
+       <div class="fShrink0 cPointer hoverLight w100px h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter">
+             ${myHours[i]} 
+       </div>`
+    }
+
+    myHoursContainer.innerHTML = myString
+
+}
+
+const backToDays = document.getElementById('backToDays')
+backToDays.addEventListener('click', ()=>{
+ fullCalendarHours.style.display = 'none'
+ fullContainerCallendar.style.display = 'grid'
 })
 
 

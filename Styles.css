@@ -53,6 +53,10 @@
   background-color: color-mix(in srgb, var(--second) 50%, white 50%);
 }
 
+.bcSecondDark{
+  background-color: #dbd5c7;
+}
+
 .hoverSecond:hover{
   background-color: var(--second-dark);
 }
