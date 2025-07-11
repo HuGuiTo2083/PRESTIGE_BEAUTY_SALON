@@ -71,8 +71,8 @@ function renderCalendar(myDay, myDayMonth, myMonth, myYear) {
     for (i = 0; i < 7; i++) {
         myString+= `
         <div class="w100 h100 dFlex jcCenter aiCenter">
-          <div class=" cPointer hoverLight resp_TabletsSize square1 br50per bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter fdColumn">
-            ${myWeek[i][0]} / ${myWeek[i][1]} <br> <span class="fs1"> ${myWeekNames[i]} </span>
+          <div class=" cPointer hoverLight w100 h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter fdColumn">
+            ${myWeek[i][0]} / ${myWeek[i][1]} <br> <span class="fs12 fw300"> ${myWeekNames[i]} </span>
           </div>
         </div>`
 
