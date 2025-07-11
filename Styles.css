@@ -829,6 +829,9 @@ background-color: #a57d7a;
 .selected-service{
   background-color: color-mix(in srgb, var(--first) 70%, black 30%);
 }
+ 
+
+
 
 
 

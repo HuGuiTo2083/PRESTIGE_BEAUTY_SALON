@@ -181,12 +181,23 @@ function createHours_toDay(day, month){
     for(i=0; i<myHours.length;i++){
         //console.log('jk')
        myString += `
-       <div class="fShrink0 cPointer hoverLight w100px h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter">
+       <div class="container-hour fShrink0 cPointer hoverLight w100px h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter">
              ${myHours[i]} 
        </div>`
     }
 
     myHoursContainer.innerHTML = myString
+    
+    const myAllHours = document.querySelectorAll('.container-hour')
+
+    myAllHours.forEach((el)=>{
+        el.addEventListener('click', ()=>{
+            el.classList.add('selected-service')
+            myAllHours.forEach((el2)=>{if(el2 != el){el2.classList.remove('selected-service')}})
+        })
+    })
+
+
 
 }
 
