@@ -390,7 +390,6 @@ function Selected_Logic() {
 
 }
 
-
 // --------------------LOGICA PARA CERRAR EL MODAL-------------
 
 const myModalOverview = document.getElementById('myModalArtist')
@@ -402,8 +401,8 @@ myBtnCloseModalS.addEventListener('click', () => {
 )
 
 myModalOverview.addEventListener('click', (el) => {
-    //console.log(myMainModal)
-    if (el.target !== myMainModal ) {
+    //console.log(el.target)
+    if (!myMainModal.contains(el.target)) {
         myModalOverview.style.display = 'none'
         //console.log('hola1')
     }

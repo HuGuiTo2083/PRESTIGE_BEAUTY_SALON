@@ -2479,6 +2479,7 @@ resize: none;
 
 
 /* ----------BORDER-LEFT-CSS------------- */
+
 /* ------------ Bordes izquierdos blancos ------------ */
 .bLeft1_solid_white { border-left: 1px solid white; }
 .bLeft2_solid_white { border-left: 2px solid white; }
@@ -2494,5 +2495,37 @@ resize: none;
 .bLeft5_solid_black { border-left: 5px solid black; }
 
 /* -------------------------- */
+
+
+
+/* -------SIZE-CSS------- */
+
+.square1{
+  width: clamp(40px, 5vw, 100px);
+  height: clamp(40px, 5vw, 100px);
+
+}
+
+
+.square2{
+  width: clamp(50px, 5vw, 100px);
+  height: clamp(50px, 5vw, 100px);
+
+}
+
+
+/* ------------------------- */
+
+/* -----RECTANGLE-CSS------ */
+
+.rectangle1{
+  width: clamp(40px, 5vw, 100px);
+  height: clamp(20px, 2.5vw, 50px);
+}
+
+/* ---------------------------- */
+
+
+
 
 
