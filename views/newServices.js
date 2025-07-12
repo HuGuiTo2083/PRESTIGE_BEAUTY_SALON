@@ -361,8 +361,8 @@ function generateImagesArtists(subservice_type) {
     const ContainerSpecialists = document.getElementById('ContainerSpecialists')
     arrayImages.forEach((el, index) => {
         myHTML += `
-    <div class="fShrink0 wAuto h100 dFlex fdColumn gap5 aiCenter jcStart">
-         <img src="../images/${myMembersImgs[el]}" class="myImg13 br50per b5_solid_first  changeGlowEffect cPointer imgRespo" id="Img_Specialist_${index}">
+    <div class="fShrink0 wAuto h100 dFlex fdColumn gap5 aiCenter jcStart ">
+         <img src="../images/${myMembersImgs[el]}" class="container-artist myImg13 br50per b5_solid_first  changeGlowEffect cPointer imgRespo" id="Img_Specialist_${index}">
          <label class="ff1 cBlack fs19">${myMembersNames[el]}</label>
          <label class="ff2 cFirst fs20 dwImg_Specialist_${index}">${myMembersJob[el]}</label>
      </div>`
@@ -370,6 +370,30 @@ function generateImagesArtists(subservice_type) {
 
     ContainerSpecialists.innerHTML = myHTML
     dynamicWidth()
+    selected_artist()
+
+}
+
+function selected_artist() {
+    const myTypes = document.querySelectorAll('.container-artist')
+
+    myTypes.forEach(el => {
+        el.addEventListener('click', () => {
+            
+            
+            document.getElementById('newCalendar').style.display = 'grid'
+            document.getElementById('containerButtonsCalendar').style.display = 'flex'
+            
+            // MY_SUBSERVICE_SELECTED = el.getAttribute('data-subservice')
+            //console.log(MY_SUBSERVICE_SELECTED )
+            el.classList.add('b5_solid_fourth')
+
+            myTypes.forEach(e => {
+                if (e != el) { e.classList.remove('b5_solid_fourth') }
+            })
+        })
+    })
+
 }
 
 
@@ -397,13 +421,19 @@ const myMainModal = document.getElementById('myMainModal')
 const myBtnCloseModalS = document.getElementById('myBtnCloseModalS')
 myBtnCloseModalS.addEventListener('click', () => {
     myModalOverview.style.display = 'none'
+    document.getElementById('newCalendar').style = 'none'
+            document.getElementById('containerButtonsCalendar').style.display = 'none'
 }
 )
 
+const myConfirmModal = document.getElementById('ConfirmModal')
+
 myModalOverview.addEventListener('click', (el) => {
     //console.log(el.target)
-    if (!myMainModal.contains(el.target)) {
+    if (!myMainModal.contains(el.target) && !myConfirmModal.contains(el.target)) {
         myModalOverview.style.display = 'none'
+        document.getElementById('newCalendar').style = 'none'
+            document.getElementById('containerButtonsCalendar').style.display = 'none'
         //console.log('hola1')
     }
 })

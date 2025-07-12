@@ -73,7 +73,7 @@ function renderCalendar(myDay, myDayMonth, myMonth, myYear) {
         <div class="w100 h100 dFlex jcCenter aiCenter">
           <div class=" cPointer hoverLight w100 h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter fdColumn"
           data-day="${myWeek[i][0]}" data-month="${myWeek[i][1]}" onclick="createHours_toDay(${myWeek[i][0]}, ${myWeek[i][1]})">
-            ${myWeek[i][0]} / ${myWeek[i][1]} <br> <span class="fs12 fw300"> ${myWeekNames[i]} </span>
+            ${myWeek[i][0].toString().padStart(2, '0')} / ${myWeek[i][1].toString().padStart(2, '0')} <br> <span class="fs12 fw300"> ${myWeekNames[i]} </span>
           </div>
         </div>`
 
@@ -189,10 +189,11 @@ function createHours_toDay(day, month){
     myHoursContainer.innerHTML = myString
     
     const myAllHours = document.querySelectorAll('.container-hour')
-
+const ConfirmModal = document.getElementById('ConfirmModal')
     myAllHours.forEach((el)=>{
         el.addEventListener('click', ()=>{
             el.classList.add('selected-service')
+ConfirmModal.style.display='grid'
             myAllHours.forEach((el2)=>{if(el2 != el){el2.classList.remove('selected-service')}})
         })
     })
@@ -205,6 +206,15 @@ const backToDays = document.getElementById('backToDays')
 backToDays.addEventListener('click', ()=>{
  fullCalendarHours.style.display = 'none'
  fullContainerCallendar.style.display = 'grid'
+})
+
+// ---------LÓGICA PARA CERRAR EL MODAL DE CONFIRMACIÓN-----------
+
+const backToMainModal = document.getElementById('backToMainModal')
+
+
+backToMainModal.addEventListener('click', ()=>{
+    ConfirmModal.style.display = 'none'
 })
 
 

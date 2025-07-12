@@ -66,7 +66,8 @@
     </div>
     <!-- --------------PARTE PARA LOS SERVICIOS ESPECIFICOS--- -->
     <div class="w100 h100 dFlex jcCenter aiCenter oHidden">
-        <div class="bcSecond br1 w60   wResp95 h95 dFlex aiCenter bsBorderBox jcCenter pl50 pr50 pt20 pb20 mt10 respPaddings">
+        <div
+            class="bcSecond br1 w60   wResp95 h95 dFlex aiCenter bsBorderBox jcCenter pl50 pr50 pt20 pb20 mt10 respPaddings">
             <div class=" w100 h60vh  dFlex aiCenter jcStart oxHidden oyAuto fdColumn gap20"
                 id="myContainerSpecificServices">
 
@@ -82,11 +83,12 @@
     </div>
     <!-- ----------MODAL ------- -->
 
-    <div class="bcTransparentBlack pFixed left0 top0 w100vw h100vh dFlex aiCenter jcCenter" id="myModalArtist">
+    <div class="bcTransparentBlack pFixed left0 top0 w100vw h100vh dNone aiCenter jcCenter" id="myModalArtist">
 
 
         <!-- -----PARTE DEL MODAL---- -->
-        <div class="Responsive-size bcSecond br1 w60vw h90vh dGrid gtc_1 gtr_auto_1_1_3_8 oHidden bsBorderBox pb10" id="myMainModal">
+        <div class="Responsive-size bcSecond br1 w60vw h90vh dGrid gtc_1 gtr_auto_1_1_3_8 oHidden bsBorderBox pb10"
+            id="myMainModal">
             <!-- BOTON PARA CERRAR -->
             <div class="w100 h100 dFlex aiCenter jcEnd bsBorderBox pr20 fs2 fw700 ff2 cFirst">
                 <span class="cPointer hoverBlack-f" id="myBtnCloseModalS">&times;</span>
@@ -130,39 +132,44 @@
                 </div>
                 <!-- ----SECCION DE ARTISTA--- -->
 
-                <div class="h100 w100  dFlex aiCenter bsBorderBox pl20 pr20 oxAuto oyHidden gap20 pb10 " id="ContainerSpecialists">
-                    
+                <div class="h100 w100  dFlex aiCenter bsBorderBox pl20 pr20 oxAuto oyHidden gap20 pb10 "
+                    id="ContainerSpecialists">
+
                     <!-- <div class="fShrink0 wAuto hAuto dFlex fdColumn gap10 aiCenter jcCenter ">
                         <img src="../images/team_teresa.jpg" class="myImg2 br50per b5_solid_first  changeGlowEffect cPointer" id="Img_Specialist_1">
                         <label class="ff1 cBlack fs15">Teresa</label>
                         <label class="ff2 cFirst fs11 dwImg_Specialist_1">Salon owner & Beautician</label>
                     </div> -->
 
-                    
 
-                    
+
+
 
                 </div>
 
                 <!-- -------SECCIÓN DEL HORARIO--- -->
 
                 <div class="h100 w100   dGrid gtc_1 gtr_2_1 bcSecondDark" id="fullContainerCallendar">
-                     <div class="w100 h100 dGrid gtr_1 gtc_r7_1 gap2 bsBorderBox pl20 pr20" id="newCalendar">
+                    <div class="w100 h100 dNone gtr_1 gtc_r7_1 gap2 bsBorderBox pl20 pr20" id="newCalendar">
 
-                     </div>
-                     <div class="w100 h100 dFlex gap20 jcCenter aiCenter ">
-                            <div class="rectangle_respSize rectangle1 br1 bcFirst cWhite fw900 fs2 dFlex aiCenter jcCenter cPointer hoverLight" id="beforeCalendar"> &larr; </div>
-                            <div class="rectangle_respSize rectangle1 br1 bcFirst cWhite fw900 fs2 dFlex aiCenter jcCenter cPointer hoverLight" id="afterCalendar"> &rarr; </div>
+                    </div>
+                    <div class="w100 h100 dNone gap20 jcCenter aiCenter " id="containerButtonsCalendar">
+                        <div class="rectangle_respSize rectangle1 br1 bcFirst cWhite fw900 fs2 dFlex aiCenter jcCenter cPointer hoverLight"
+                            id="beforeCalendar"> &larr; </div>
+                        <div class="rectangle_respSize rectangle1 br1 bcFirst cWhite fw900 fs2 dFlex aiCenter jcCenter cPointer hoverLight"
+                            id="afterCalendar"> &rarr; </div>
 
-                     </div>
+                    </div>
 
                 </div>
 
 
 
-                <div class="w100 h100 gtr_1_2 gtc_1  dNone bsBorderBox pl20 pr20 oyHidden oxAuto pb10 bcSecondDark" id="fullCalendarHours">
+                <div class="w100 h100 gtr_1_2 gtc_1  dNone bsBorderBox pl20 pr20 oyHidden oxAuto pb10 bcSecondDark"
+                    id="fullCalendarHours">
                     <div class="w100 h100 dFlex aiCenter jcStart bsBorderBox pt10">
-                        <div class="w50px h40px br5px bcFirs ff2 fs2 fw700 cWhite bcFirst dFlex aiCenter jcCenter cPointer hoverLight" id="backToDays">
+                        <div class="w50px h40px br5px bcFirs ff2 fs2 fw700 cWhite bcFirst dFlex aiCenter jcCenter cPointer hoverLight"
+                            id="backToDays">
                             &larr;</div>
                     </div>
 
@@ -174,6 +181,36 @@
 
             </div>
             <!-- ---------------- -->
+        </div>
+
+        <!-- ----------------MINI MODAL PARA CONFIRMAR TU RESERVACION------- -->
+
+        <div class=" oHidden dNone gtc_1 gtr_0-5_3_1 w50 h400px br1 bcLG_180deg_SecondLightFourth resp_Size_twoo pAbsolute zIndex2 boxx "
+            id="ConfirmModal">
+            <!-- ----SECCION DONDE ESTÁ EL BOTON DE REGRESAR PARA NO CONFIRMAR---- -->
+            <div class="w100 h100 dFlex bsBorderBox pl20 aiCenter jcStart pt5">
+                <div class="w10 h80 br5px bcFirst cPointer hoverLight dFlex aiCenter jcCenter ff2 fs2 fw700 cWhite"
+                    id="backToMainModal">
+                    &larr;</div>
+            </div>
+            <!-- ------SECCIÓN PRINCIPAL DONDE ESTARÁ EL CONTENIDO DE LA INFORMACION--- -->
+            <div class="w100 h100  bsBorderBox p30 dFlex jcCenter aiStart gap10 fdColumn">
+                <label class="fw700 cFirst ff2 fs2 taLeft">Semi-Permanent Eyelash Extensions</label>
+                <label class="fw300 cBlack ff2 fs21">With <span class="fw600">Teresa</span> </label>
+
+               <label class="fw300 cBlack ff2 fs17 taLeft">Semi-Permanent Eyelash Extensions-Infills</label>
+               <label class="fw300 cBlack ff2 fs17">12/07  -  10:00</label>
+            
+
+
+            </div>
+
+            <!-- ---------SECCION DONDE ESTÁ EL BOTÓN PRA CONFIRMAR----- -->
+            <div class="w100 h100 dFlex aiCenter jcCenter">
+                <button
+                    class="bNone bcGreen2 hoverLight cPointer w100px h50px br10px fw600 ff2 fs12 cWhite">Confirm</button>
+            </div>
+
         </div>
 
 

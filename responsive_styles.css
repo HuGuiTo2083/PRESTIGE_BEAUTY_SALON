@@ -57,6 +57,11 @@
         width: 95vw !important;
     }
 
+    .resp_Size_twoo{
+        width: 90% !important;
+        height: 400px !important;
+    }
+
 }
 
 /* Smarthphones, includes iPads/Tablets of medium and small size, large size won't here */
