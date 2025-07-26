@@ -3,6 +3,13 @@ let MY_SERVICE_SELECTED = -1
 let MY_SUBSERVICE_TYPE_SELECTED = -1
 let MY_SUBSERVICE_SELECTED = -1
 
+let MY_SUBSERVICE_NAME = ''
+let MY_TYPE_OF_SUBSERVICE = ''
+let MY_ARTIST_NAME = ''
+let MY_GBP = ''
+let MY_DATE = ''
+let MY_HOUR = ''
+
 const myServicesArray = ["Eyelash Extension", "Eyebrows", "Facials", "Make Up", "Tanning",
     "Spray Tans", "Nails", "Hair Removal"]
 
@@ -275,7 +282,6 @@ const myArtistJSON = {
 function createOption(myServices, myServiceIndex) {
     const myContainer = document.getElementById('myContainerSpecificServices')
     let myString = ''
-
     myServices.forEach((el, index) => {
         let myFontSize = 'fs2'
         if( el.length > 30 && window.innerWidth<=600){
@@ -294,11 +300,15 @@ function createOption(myServices, myServiceIndex) {
     //console.log(myServices)
 }
 
+
+
 function openModalService(SubService, index) {
+    MY_SUBSERVICE_NAME = SubService
 
     //console.log("el ancho de esta ventana es: " + window.innerWidth + ", y e alto es: " + window.innerHeight)
     const ContainerSpecialists = document.getElementById('ContainerSpecialists')
     ContainerSpecialists.innerHTML = ''
+   
     const containerSubservice = document.getElementById('containerSubservice')
     const menuTypes = document.getElementById('menuTypes')
     let myHTML = ''
@@ -323,7 +333,7 @@ function openModalService(SubService, index) {
        
         myHTML += `
         <div class="fShrink0 w200px h90 br10px bcFirst dGrid gtc_1 gtr_1_1_0-5 bsBorderBox pl5 pr5 cPointer hoverLight type-service"
-         onclick="generateImagesArtists('${myString}')">
+         onclick="generateImagesArtists('${myString}', '${myService_Detail[1]}')">
 
                     <div class="w100 h100 dFlex aiCenter jcCenter fs12 ff2 fw400 cWhite">
                         ${el}
@@ -354,7 +364,9 @@ const myMembersJob = ['Salon owner & Beautician', 'Beautician & Social Media', '
 const myMembersNames = ['Teresa', 'Lucy-Rose', 'Carly', 'Hollie', 'Marni', 'Amy']
 const myMembersImgs = ['team_teresa.jpg', 'team_lucy-rose.jpg', 'team_carly.jpg', 'team_holly.jpg', 'team_marni.jpg', 'team_amy.jpg']
 
-function generateImagesArtists(subservice_type) {
+function generateImagesArtists(subservice_type, myGBP) {
+    MY_TYPE_OF_SUBSERVICE = subservice_type
+    MY_GBP = myGBP
     let arrayImages = myArtistJSON[subservice_type]
    //console.log("el array recibido es: " + arrayImages)
     let myHTML = ''
@@ -362,7 +374,7 @@ function generateImagesArtists(subservice_type) {
     arrayImages.forEach((el, index) => {
         myHTML += `
     <div class="fShrink0 wAuto h100 dFlex fdColumn gap5 aiCenter jcStart ">
-         <img src="../images/${myMembersImgs[el]}" class="container-artist myImg13 br50per b5_solid_first  changeGlowEffect cPointer imgRespo" id="Img_Specialist_${index}">
+         <img data-name="${myMembersNames[el]}" src="../images/${myMembersImgs[el]}" class="container-artist myImg13 br50per b5_solid_first  changeGlowEffect cPointer imgRespo" id="Img_Specialist_${index}">
          <label class="ff1 cBlack fs19">${myMembersNames[el]}</label>
          <label class="ff2 cFirst fs20 dwImg_Specialist_${index}">${myMembersJob[el]}</label>
      </div>`
@@ -379,8 +391,8 @@ function selected_artist() {
 
     myTypes.forEach(el => {
         el.addEventListener('click', () => {
-            
-            
+             
+            MY_ARTIST_NAME = el.getAttribute('data-name')
             document.getElementById('newCalendar').style.display = 'grid'
             document.getElementById('containerButtonsCalendar').style.display = 'flex'
             
@@ -423,6 +435,10 @@ myBtnCloseModalS.addEventListener('click', () => {
     myModalOverview.style.display = 'none'
     document.getElementById('newCalendar').style = 'none'
             document.getElementById('containerButtonsCalendar').style.display = 'none'
+            document.getElementById('fullCalendarHours').style.display='none'
+
+    document.getElementById('fullContainerCallendar').style.display = 'grid'
+
 }
 )
 
@@ -434,6 +450,9 @@ myModalOverview.addEventListener('click', (el) => {
         myModalOverview.style.display = 'none'
         document.getElementById('newCalendar').style = 'none'
             document.getElementById('containerButtonsCalendar').style.display = 'none'
+            document.getElementById('fullCalendarHours').style.display='none'
+            document.getElementById('fullContainerCallendar').style.display = 'grid'
+
         //console.log('hola1')
     }
 })
