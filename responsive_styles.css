@@ -21,7 +21,17 @@
         grid-template-columns: 2fr auto 1fr !important;
         box-sizing: border-box;
         padding-left: 10px;
+         
+    }
 
+    .respPedi{
+        grid-template-rows: 1fr auto 1fr !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+   height: 28vh !important;
+    }
+
+    .myLineR{
+        display: flex !important;
     }
 
     .divResp3 button {

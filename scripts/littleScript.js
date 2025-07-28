@@ -14,11 +14,26 @@ if (params.has('myType')) {
     mySideMenu.appendChild(myDiv)
   }
 
+  const myDiv = document.createElement('div')
+  myDiv.className = 'w90 h7vh br1 bcFirst cSecond dFlex aiCenter jcCenter fw900 ff1 fs4 cPointer hoverLight trans0-5'
+  myDiv.id='btProfile'
+  myDiv.innerHTML = 'Profile'
+  mySideMenu.appendChild(myDiv)
+  
+
   const btAdminModule = document.getElementById('btAdminModule')
 
 if(btAdminModule){
   btAdminModule.addEventListener('click', ()=>{
     window.location.href = `views/Admin.html?myId=${myId}&myType=${myType}`
+  })
+}
+
+const btProfile = document.getElementById('btProfile')
+
+if(btProfile){
+  btProfile.addEventListener('click', ()=>{
+    window.location.href = `views/Profile.html?myId=${myId}&myType=${myType}`
   })
 }
 

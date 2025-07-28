@@ -1,4 +1,5 @@
 const myNewCalendar = document.getElementById('newCalendar')
+const modal3 = document.getElementById('modal3')
 
 const myDate = new Date()
 const otherDay = Date.now()
@@ -170,21 +171,49 @@ const fullContainerCallendar = document.getElementById('fullContainerCallendar')
 const fullCalendarHours = document.getElementById('fullCalendarHours')
 
 
-function createHours_toDay(day, month) {
+async function createHours_toDay(day, month) {
+    MY_DATE = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}`
+
+    const myResp = await fetch('https://prestige-beauty-backend.vercel.app/getBussyByDate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            'specialist_id': MY_ID_ARTIST,
+            'date': MY_DATE 
+        })
+    })
+
+
+    const response = await myResp.json();
+    console.log(response)
     fullContainerCallendar.style.display = 'none'
-    MY_DATE =  `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}`
     fullCalendarHours.style.display = 'grid'
 
     const myHoursContainer = document.getElementById('myHoursContainer')
     // console.log(day)
     // console.log(month)
     let myString = ''
+    let MY_BLOCKS = 0
     for (i = 0; i < myHours.length; i++) {
+        const  busyHour = response.find(item => item.SCHEDULE2_HOUR === myHours[i]);
         //console.log('jk')
-        myString += `
-       <div class="container-hour fShrink0 cPointer hoverLight w100px h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter" data-hour="${myHours[i]}">
-             ${myHours[i]} 
-       </div>`
+        if(!busyHour && MY_BLOCKS<=0){
+            myString += `
+            <div class="container-hour fShrink0 cPointer hoverLight w100px h70 br5px bcFirst fs12 ff2 fw400 cWhite dFlex aiCenter jcCenter" data-hour="${myHours[i]}">
+                  ${myHours[i]} 
+            </div>`
+        }
+        else{
+            if(MY_BLOCKS<=0){
+                MY_BLOCKS =  (busyHour.SCHEDULE2_BLOCKS-1)
+               console.log("se cambia el valor de Blocks: " + MY_BLOCKS)
+            }
+            else{
+                MY_BLOCKS--
+                console.log("se resta 1 a blocks")
+            }
+        }
+       
     }
 
     myHoursContainer.innerHTML = myString
@@ -195,14 +224,15 @@ function createHours_toDay(day, month) {
         el.addEventListener('click', () => {
             el.classList.add('selected-service')
             ConfirmModal.style.display = 'grid'
-            MY_HOUR  = el.getAttribute('data-hour')
+            MY_HOUR = el.getAttribute('data-hour')
             console.log(MY_SUBSERVICE_NAME)
             console.log(MY_TYPE_OF_SUBSERVICE)
             console.log(MY_ARTIST_NAME)
             console.log(MY_GBP)
             console.log(MY_HOUR)
-
-            ConfirmModal.innerHTML= `
+            console.log(MY_TIME)
+            console.log(MY_DATE)
+            ConfirmModal.innerHTML = `
               <!-- ----SECCION DONDE ESTÁ EL BOTON DE REGRESAR PARA NO CONFIRMAR---- -->
             <div class="w100 h100 dFlex bsBorderBox pl20 aiCenter jcStart pt5">
                 <div class="w10 h80 br5px bcFirst cPointer hoverLight dFlex aiCenter jcCenter ff2 fs2 fw700 cWhite"
@@ -217,6 +247,8 @@ function createHours_toDay(day, month) {
                <label class="fw300 cBlack ff2 fs17 taLeft">${MY_TYPE_OF_SUBSERVICE}</label>
                <label class="fw300 cBlack ff2 fs17">${MY_DATE}  -  ${MY_HOUR}</label>
                <label class="fw600 cBlack ff2 fs17">${MY_GBP}</label>
+               <label class="fw600 cBlack ff2 fs17">${MY_TIME} min</label>
+
 
 
 
@@ -225,7 +257,7 @@ function createHours_toDay(day, month) {
             <!-- ---------SECCION DONDE ESTÁ EL BOTÓN PRA CONFIRMAR----- -->
             <div class="w100 h100 dFlex aiCenter jcCenter">
                 <button
-                    class="bNone bcGreen2 hoverLight cPointer w100px h50px br10px fw600 ff2 fs12 cWhite">Confirm</button>
+                    class="bNone bcGreen2 hoverLight cPointer w100px h50px br10px fw600 ff2 fs12 cWhite" id="btConfirmAppointment" onclick="sendAppointment()">Confirm</button>
             </div>
             `
             logic_toClose_ConfirmModal()
@@ -236,7 +268,97 @@ function createHours_toDay(day, month) {
     })
 
 
+
 }
+
+const myID_membersJSON = {
+    "Teresa": 1,
+    "Lucy-Rose": 2,
+    "Amy": 3,
+    "Marni": 4,
+    "Carly": 6
+}
+async function sendAppointment() {
+    const query = window.location.search;
+
+    // 2) Crea un objeto para leer los parámetros
+    const params = new URLSearchParams(query);
+
+    if (params.has('myId') && params.has('myType')) {
+        const user_id = params.get('myId');
+        const specialist_id = myID_membersJSON[MY_ARTIST_NAME]
+        const subservice = MY_SUBSERVICE_NAME
+        const type = MY_TYPE_OF_SUBSERVICE
+        const money = MY_GBP
+        let blocks
+        if (MY_TIME < 15) {
+            blocks = 1
+        }
+        else {
+            blocks = Math.ceil(MY_TIME / 15)
+        }
+        const date = MY_DATE
+        const hour = MY_HOUR
+
+        const myMainModal = document.getElementById('myMainModal')
+        const ConfirmModal = document.getElementById('ConfirmModal')
+        const mySpinner = document.getElementById('mySpinner')
+        const myModalArtist = document.getElementById('myModalArtist')
+        const ContainerConfirmation = document.getElementById('ContainerConfirmation')
+        myMainModal.style.display = 'none'
+
+        ConfirmModal.style.display = 'none'
+        mySpinner.style.display = 'flex'
+
+        const myResp = await fetch('https://prestige-beauty-backend.vercel.app/saveAppointment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                'user_id': user_id,
+                'specialist_id': specialist_id,
+                'subservice': subservice,
+                'type': type,
+                'money': money,
+                'blocks': blocks,
+                'date': date,
+                'hour': hour
+            })
+        })
+
+
+        const response = await myResp.json();
+
+        const myImg = document.createElement('img')
+        myImg.src = "../icons/Success.png"
+        myImg.classList.add('myImg8')
+
+        const label1 = document.createElement('label')
+        label1.className = 'fs6 ff2 fw600 cWhite'
+        label1.innerHTML = 'Successfully Scheduled'
+
+        ContainerConfirmation.appendChild(myImg)
+        ContainerConfirmation.appendChild(label1)
+
+        mySpinner.style.display = 'none'
+        modal3.style.display = 'grid'
+        setTimeout(() => {
+            modal3.style.display = 'none';
+            myModalArtist.style.display = 'none';
+            document.getElementById('newCalendar').style = 'none'
+            document.getElementById('containerButtonsCalendar').style.display = 'none'
+            document.getElementById('fullCalendarHours').style.display = 'none'
+            document.getElementById('ContainerSpecialists').innerHTML = ''
+            document.getElementById('fullContainerCallendar').style.display = 'grid'
+        }, 2000)
+        console.log(response)
+    }
+    else {
+        window.location.href = "./login.html?myOrigin=services"
+    }
+
+
+}
+
 
 const backToDays = document.getElementById('backToDays')
 backToDays.addEventListener('click', () => {
@@ -247,16 +369,25 @@ backToDays.addEventListener('click', () => {
 // ---------LÓGICA PARA CERRAR EL MODAL DE CONFIRMACIÓN-----------
 
 
-function logic_toClose_ConfirmModal(){
+function logic_toClose_ConfirmModal() {
     const backToMainModal = document.getElementById('backToMainModal')
 
 
     backToMainModal.addEventListener('click', () => {
         ConfirmModal.style.display = 'none'
     })
-    
+
 }
 
+// ---------------LOGICA PARA CERRAR EL MODAL DE CITA EXITOSA -------------
+
+const closeBtn3 = document.getElementById('closeBtn3')
+
+closeBtn3.addEventListener('click', () => {
+    modal3.style.display = 'none'
+    myModalOverview.style.display = 'none'
+
+})
 
 
 //---ahora que se definieron las variables se empezará a crear el calendario

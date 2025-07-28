@@ -9,6 +9,28 @@
     <link href="../responsive_styles.css" rel="stylesheet" type="text/css">
 
     <link href="../myClasses.css" rel="stylesheet" type="text/css">
+    <style>
+        /* Spinner 1: Círculo giratorio clásico */
+        .spinner-1 {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #fcb878;
+            border-radius: 50%;
+            animation: spin-1 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin-1 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 
 <body class="bcLG_180deg_thirdFourth_anim h100vh w100vw bsBorderBox p10  dGrid gtr_0-5_auto_8 pRelative gtc_1">
@@ -195,7 +217,7 @@
                     id="backToMainModal">
                     &larr;</div>
             </div> -->
-            
+
             <!-- ------SECCIÓN PRINCIPAL DONDE ESTARÁ EL CONTENIDO DE LA INFORMACION--- -->
 
             <!-- <div class="w100 h100  bsBorderBox p30 dFlex jcCenter aiStart gap10 fdColumn">
@@ -217,6 +239,23 @@
                     class="bNone bcGreen2 hoverLight cPointer w100px h50px br10px fw600 ff2 fs12 cWhite">Confirm</button>
             </div> -->
 
+        </div>
+
+        <!-- -----------------SPINNER DE CARGA------------ -->
+        <div class="oHidden dNone jcCenter aiCenter bcSecond br1 h200px w200px" id="mySpinner">
+            <div class="spinner-1"></div>
+        </div>
+
+        <!-- -----------------------MODAL DE CONFIRMACIÓN DE CITA---------------- -->
+        <div class="dNone modal1 bcFirst h50vh cust_anim2" id="modal3">
+            <button class="close-btn1" id="closeBtn3" aria-label="Cerrar modal">&times;</button>
+            <div class="w100 h100"></div>
+            <div class="w100 h100  pRelative dFlex jcCenter aiCenter gap20 fdColumn" id="ContainerConfirmation">
+                <!-- <img src="../icons/Success.png" class="myImg8">
+             <label class="fs6 ff2 fw600 cWhite">Login Successfully</label>
+             <label class="fs6 ff1 ls3 fw300 cWhite">Welcome Hugo</label> -->
+
+            </div>
         </div>
 
 

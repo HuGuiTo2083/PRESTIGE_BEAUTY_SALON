@@ -535,6 +535,12 @@ h1{
     height: 1px;
     background: black;
   }
+
+  .line12 {
+    width: 50%;
+    height: 2px;
+  }
+
   .line2 {
     width: 70%;
     height: 1px;

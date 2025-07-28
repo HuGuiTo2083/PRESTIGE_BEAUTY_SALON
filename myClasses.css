@@ -53,6 +53,10 @@
 
 }
 
+.gtc_r8{
+  grid-template-columns: repeat(8, 1fr);
+}
+
 .gtc_ra300px{
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
@@ -118,6 +122,10 @@
 
 .gtc_1_3{
   grid-template-columns: 1fr 3fr;
+}
+
+.gtc_1_8{
+  grid-template-columns: 1fr 8fr;
 }
 
 .gtc_2-5_0-5{
@@ -1451,6 +1459,7 @@ border-radius: 50%;
 .h10vh  { height: 10vh; }
 .h15vh  { height: 15vh; }
 .h20vh  { height: 20vh; }
+.h22vh  { height: 22vh; }
 .h25vh  { height: 25vh; }
 .h30vh  { height: 30vh; }
 .h35vh  { height: 35vh; }

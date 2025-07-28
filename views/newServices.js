@@ -9,6 +9,7 @@ let MY_ARTIST_NAME = ''
 let MY_GBP = ''
 let MY_DATE = ''
 let MY_HOUR = ''
+let MY_TIME = 0
 
 const myServicesArray = ["Eyelash Extension", "Eyebrows", "Facials", "Make Up", "Tanning",
     "Spray Tans", "Nails", "Hair Removal"]
@@ -333,7 +334,7 @@ function openModalService(SubService, index) {
        
         myHTML += `
         <div class="fShrink0 w200px h90 br10px bcFirst dGrid gtc_1 gtr_1_1_0-5 bsBorderBox pl5 pr5 cPointer hoverLight type-service"
-         onclick="generateImagesArtists('${myString}', '${myService_Detail[1]}')">
+         onclick="generateImagesArtists('${myString}', '${myService_Detail[1]}', ${myService_Detail[0]})">
 
                     <div class="w100 h100 dFlex aiCenter jcCenter fs12 ff2 fw400 cWhite">
                         ${el}
@@ -357,6 +358,9 @@ function openModalService(SubService, index) {
     containerSubservice.innerHTML = myHTML2
     menuTypes.innerHTML = myHTML
     myModalOverview.style.display = 'flex'
+    const myMainModal = document.getElementById('myMainModal')
+    myMainModal.style.display = 'grid'
+    
     Selected_Logic()
 }
 
@@ -364,8 +368,9 @@ const myMembersJob = ['Salon owner & Beautician', 'Beautician & Social Media', '
 const myMembersNames = ['Teresa', 'Lucy-Rose', 'Carly', 'Hollie', 'Marni', 'Amy']
 const myMembersImgs = ['team_teresa.jpg', 'team_lucy-rose.jpg', 'team_carly.jpg', 'team_holly.jpg', 'team_marni.jpg', 'team_amy.jpg']
 
-function generateImagesArtists(subservice_type, myGBP) {
+function generateImagesArtists(subservice_type, myGBP, myTime) {
     MY_TYPE_OF_SUBSERVICE = subservice_type
+    MY_TIME = myTime
     MY_GBP = myGBP
     let arrayImages = myArtistJSON[subservice_type]
    //console.log("el array recibido es: " + arrayImages)
@@ -381,10 +386,21 @@ function generateImagesArtists(subservice_type, myGBP) {
     })
 
     ContainerSpecialists.innerHTML = myHTML
+
+    document.getElementById('newCalendar').style = 'none'
+    document.getElementById('containerButtonsCalendar').style.display = 'none'
+    document.getElementById('fullCalendarHours').style.display='none'
+    document.getElementById('fullContainerCallendar').style.display = 'grid'
+
     dynamicWidth()
     selected_artist()
 
 }
+
+const myJSON_Id_Artists = {
+    'Teresa' : 1, 'Lucy-Rose': 2, 'Carly': 6, 'Marni': 4, 'Amy': 3
+}
+let MY_ID_ARTIST= -1
 
 function selected_artist() {
     const myTypes = document.querySelectorAll('.container-artist')
@@ -393,6 +409,7 @@ function selected_artist() {
         el.addEventListener('click', () => {
              
             MY_ARTIST_NAME = el.getAttribute('data-name')
+            MY_ID_ARTIST = myJSON_Id_Artists[MY_ARTIST_NAME]
             document.getElementById('newCalendar').style.display = 'grid'
             document.getElementById('containerButtonsCalendar').style.display = 'flex'
             
@@ -436,23 +453,25 @@ myBtnCloseModalS.addEventListener('click', () => {
     document.getElementById('newCalendar').style = 'none'
             document.getElementById('containerButtonsCalendar').style.display = 'none'
             document.getElementById('fullCalendarHours').style.display='none'
-
+          document.getElementById('ContainerSpecialists').innerHTML=''
     document.getElementById('fullContainerCallendar').style.display = 'grid'
 
 }
 )
 
 const myConfirmModal = document.getElementById('ConfirmModal')
+const modalSuccess = document.getElementById('modal3')
 
 myModalOverview.addEventListener('click', (el) => {
     //console.log(el.target)
-    if (!myMainModal.contains(el.target) && !myConfirmModal.contains(el.target)) {
+    if (!myMainModal.contains(el.target) && !myConfirmModal.contains(el.target) && !modalSuccess.contains(el.target)) {
         myModalOverview.style.display = 'none'
         document.getElementById('newCalendar').style = 'none'
             document.getElementById('containerButtonsCalendar').style.display = 'none'
             document.getElementById('fullCalendarHours').style.display='none'
+           document.getElementById('ContainerSpecialists').innerHTML = ''
             document.getElementById('fullContainerCallendar').style.display = 'grid'
-
+modalSuccess.style.display = 'none'
         //console.log('hola1')
     }
 })
