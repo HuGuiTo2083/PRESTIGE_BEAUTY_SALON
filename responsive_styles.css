@@ -27,7 +27,7 @@
     .respPedi{
         grid-template-rows: 1fr auto 1fr !important;
         grid-template-columns: repeat(4, 1fr) !important;
-   height: 28vh !important;
+   height: 33vh !important;
     }
 
     .myLineR{
